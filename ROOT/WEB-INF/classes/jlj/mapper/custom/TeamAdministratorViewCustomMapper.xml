@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 查询team_administrator_view表的mapper配置 -->
+<mapper namespace="jlj.mapper.custom.TeamAdministratorViewCustomMapper">
+	<!-- 返回结果集重新定义，遇到字段有下划线的需要转换 -->
+	<resultMap id="BaseResultMap" type="jlj.po.custom.TeamAdministratorViewCustom" >
+	    <result column="team_id" property="teamId" jdbcType="INTEGER" />
+	    <result column="team_name" property="teamName" jdbcType="VARCHAR" />
+	    <result column="team_createtime" property="teamCreatetime" jdbcType="TIMESTAMP" />
+	    <result column="administrator_id" property="administratorId" jdbcType="INTEGER" />
+	    <result column="admin_name" property="adminName" jdbcType="VARCHAR" />
+	    <result column="admin_pwd" property="adminPwd" jdbcType="VARCHAR" />
+	    <result column="admin_createtime" property="adminCreatetime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<!-- 查询列表需要用到的动态sql -->
+	<sql id="Field_Where">
+		<if test="teamAdministratorViewCustom!=null">
+			<!-- 这里要注意，where值需要加引号，因为类未知；但是对于主键为int型好像会影响mysql性能，
+				但是如果不加引号对字符串类型的输入数据就会报错
+			 -->
+			<if test="teamAdministratorViewCustom.teamId!=null">
+				AND team_id = #{teamAdministratorViewCustom.teamId,jdbcType=INTEGER}
+			</if>
+			<if test="teamAdministratorViewCustom.teamIdNe!=null">
+				AND team_id != #{teamAdministratorViewCustom.teamIdNe,jdbcType=INTEGER}
+			</if>
+			<if test="teamAdministratorViewCustom.teamIdLike!=null">
+				AND team_id LIKE CONCAT('%', #{teamAdministratorViewCustom.teamIdLike,jdbcType=INTEGER} ,'%') 
+			</if>
+			<!-- 所有有大小比较的参数都必须是整型,避免mysql字符位数不足时进行截取前几位比较 -->
+			<if test="teamAdministratorViewCustom.teamIdGt!=null">
+				AND team_id &gt; #{teamAdministratorViewCustom.teamIdGt,jdbcType=INTEGER}
+			</if>
+			<if test="teamAdministratorViewCustom.teamIdLt!=null">
+				AND team_id &lt; #{teamAdministratorViewCustom.teamIdLt,jdbcType=INTEGER}
+			</if>
+			<if test="teamAdministratorViewCustom.teamIdGe!=null">
+				AND team_id &gt;= #{teamAdministratorViewCustom.teamIdGe,jdbcType=INTEGER}
+			</if>
+			<if test="teamAdministratorViewCustom.teamIdLe!=null">
+				AND team_id &lt;= #{teamAdministratorViewCustom.teamIdLe,jdbcType=INTEGER}
+			</if>
+			<if test="teamAdministratorViewCustom.teamIdOr!=null">
+				OR team_id = #{teamAdministratorViewCustom.teamIdOr,jdbcType=INTEGER}
+			</if>
+			<if test="teamAdministratorViewCustom.teamIdNeOr!=null">
+				OR team_id != #{teamAdministratorViewCustom.teamIdNeOr,jdbcType=INTEGER}
+			</if>
+			<if test="teamAdministratorViewCustom.teamIdLikeOr!=null">
+				OR team_id LIKE CONCAT('%', #{teamAdministratorViewCustom.teamIdLikeOr,jdbcType=INTEGER} ,'%') 
+			</if>
+			<!-- 所有有大小比较的参数都必须是整型,避免mysql字符位数不足时进行截取前几位比较 -->
+			<if test="teamAdministratorViewCustom.teamIdGtOr!=null">
+				OR team_id &gt; #{teamAdministratorViewCustom.teamIdGtOr,jdbcType=INTEGER}
+			</if>
+			<if test="teamAdministratorViewCustom.teamIdLtOr!=null">
+				OR team_id &lt; #{teamAdministratorViewCustom.teamIdLtOr,jdbcType=INTEGER}
+			</if>
+			<if test="teamAdministratorViewCustom.teamIdGeOr!=null">
+				OR team_id &gt;= #{teamAdministratorViewCustom.teamIdGeOr,jdbcType=INTEGER}
+			</if>
+			<if test="teamAdministratorViewCustom.teamIdLeOr!=null">
+				OR team_id &lt;= #{teamAdministratorViewCustom.teamIdLeOr,jdbcType=INTEGER}
+			</if>
+			<if test="teamAdministratorViewCustom.teamName!=null">
+				AND team_name = #{teamAdministratorViewCustom.teamName,jdbcType=VARCHAR}
+			</if>
+			<if test="teamAdministratorViewCustom.teamNameNe!=null">
+				AND team_name != #{teamAdministratorViewCustom.teamNameNe,jdbcType=VARCHAR}
+			</if>
+			<if test="teamAdministratorViewCustom.teamNameLike!=null">
+				AND team_name LIKE CONCAT('%', #{teamAdministratorViewCustom.teamNameLike,jdbcType=VARCHAR} ,'%') 
+			</if>
+			<if test="teamAdministratorViewCustom.teamNameOr!=null">
+				OR team_name = #{teamAdministratorViewCustom.teamNameOr,jdbcType=VARCHAR}
+			</if>
+			<if test="teamAdministratorViewCustom.teamNameNeOr!=null">
+				OR team_name != #{teamAdministratorViewCustom.teamNameNeOr,jdbcType=VARCHAR}
+			</if>
+			<if test="teamAdministratorViewCustom.teamNameLikeOr!=null">
+				OR team_name LIKE CONCAT('%', #{teamAdministratorViewCustom.teamNameLikeOr,jdbcType=VARCHAR} ,'%') 
+			</if>
+			<if test="teamAdministratorViewCustom.teamCreatetime!=null">
+				AND team_createtime = #{teamAdministratorViewCustom.teamCreatetime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="teamAdministratorViewCustom.teamCreatetimeNe!=null">
+				AND team_createtime != #{teamAdministratorViewCustom.teamCreatetimeNe,jdbcType=TIMESTAMP}
+			</if>
+			<if test="teamAdministratorViewCustom.teamCreatetimeLike!=null">
+				AND team_createtime LIKE CONCAT('%', #{teamAdministratorViewCustom.teamCreatetimeLike,jdbcType=TIMESTAMP} ,'%') 
+			</if>
+			<if test="teamAdministratorViewCustom.teamCreatetimeOr!=null">
+				OR team_createtime = #{teamAdministratorViewCustom.teamCreatetimeOr,jdbcType=TIMESTAMP}
+			</if>
+			<if test="teamAdministratorViewCustom.teamCreatetimeNeOr!=null">
+				OR team_createtime != #{teamAdministratorViewCustom.teamCreatetimeNeOr,jdbcType=TIMESTAMP}
+			</if>
+			<if test="teamAdministratorViewCustom.teamCreatetimeLikeOr!=null">
+				OR team_createtime LIKE CONCAT('%', #{teamAdministratorViewCustom.teamCreatetimeLikeOr,jdbcType=TIMESTAMP} ,'%') 
+			</if>
+			<if test="teamAdministratorViewCustom.administratorId!=null">
+				AND administrator_id = #{teamAdministratorViewCustom.administratorId,jdbcType=INTEGER}
+			</if>
+			<if test="teamAdministratorViewCustom.administratorIdNe!=null">
+				AND administrator_id != #{teamAdministratorViewCustom.administratorIdNe,jdbcType=INTEGER}
+			</if>
+			<if test="teamAdministratorViewCustom.administratorIdLike!=null">
+				AND administrator_id LIKE CONCAT('%', #{teamAdministratorViewCustom.administratorIdLike,jdbcType=INTEGER} ,'%') 
+			</if>
+			<!-- 所有有大小比较的参数都必须是整型,避免mysql字符位数不足时进行截取前几位比较 -->
+			<if test="teamAdministratorViewCustom.administratorIdGt!=null">
+				AND administrator_id &gt; #{teamAdministratorViewCustom.administratorIdGt,jdbcType=INTEGER}
+			</if>
+			<if test="teamAdministratorViewCustom.administratorIdLt!=null">
+				AND administrator_id &lt; #{teamAdministratorViewCustom.administratorIdLt,jdbcType=INTEGER}
+			</if>
+			<if test="teamAdministratorViewCustom.administratorIdGe!=null">
+				AND administrator_id &gt;= #{teamAdministratorViewCustom.administratorIdGe,jdbcType=INTEGER}
+			</if>
+			<if test="teamAdministratorViewCustom.administratorIdLe!=null">
+				AND administrator_id &lt;= #{teamAdministratorViewCustom.administratorIdLe,jdbcType=INTEGER}
+			</if>
+			<if test="teamAdministratorViewCustom.administratorIdOr!=null">
+				OR administrator_id = #{teamAdministratorViewCustom.administratorIdOr,jdbcType=INTEGER}
+			</if>
+			<if test="teamAdministratorViewCustom.administratorIdNeOr!=null">
+				OR administrator_id != #{teamAdministratorViewCustom.administratorIdNeOr,jdbcType=INTEGER}
+			</if>
+			<if test="teamAdministratorViewCustom.administratorIdLikeOr!=null">
+				OR administrator_id LIKE CONCAT('%', #{teamAdministratorViewCustom.administratorIdLikeOr,jdbcType=INTEGER} ,'%') 
+			</if>
+			<!-- 所有有大小比较的参数都必须是整型,避免mysql字符位数不足时进行截取前几位比较 -->
+			<if test="teamAdministratorViewCustom.administratorIdGtOr!=null">
+				OR administrator_id &gt; #{teamAdministratorViewCustom.administratorIdGtOr,jdbcType=INTEGER}
+			</if>
+			<if test="teamAdministratorViewCustom.administratorIdLtOr!=null">
+				OR administrator_id &lt; #{teamAdministratorViewCustom.administratorIdLtOr,jdbcType=INTEGER}
+			</if>
+			<if test="teamAdministratorViewCustom.administratorIdGeOr!=null">
+				OR administrator_id &gt;= #{teamAdministratorViewCustom.administratorIdGeOr,jdbcType=INTEGER}
+			</if>
+			<if test="teamAdministratorViewCustom.administratorIdLeOr!=null">
+				OR administrator_id &lt;= #{teamAdministratorViewCustom.administratorIdLeOr,jdbcType=INTEGER}
+			</if>
+			<if test="teamAdministratorViewCustom.adminName!=null">
+				AND admin_name = #{teamAdministratorViewCustom.adminName,jdbcType=VARCHAR}
+			</if>
+			<if test="teamAdministratorViewCustom.adminNameNe!=null">
+				AND admin_name != #{teamAdministratorViewCustom.adminNameNe,jdbcType=VARCHAR}
+			</if>
+			<if test="teamAdministratorViewCustom.adminNameLike!=null">
+				AND admin_name LIKE CONCAT('%', #{teamAdministratorViewCustom.adminNameLike,jdbcType=VARCHAR} ,'%') 
+			</if>
+			<if test="teamAdministratorViewCustom.adminNameOr!=null">
+				OR admin_name = #{teamAdministratorViewCustom.adminNameOr,jdbcType=VARCHAR}
+			</if>
+			<if test="teamAdministratorViewCustom.adminNameNeOr!=null">
+				OR admin_name != #{teamAdministratorViewCustom.adminNameNeOr,jdbcType=VARCHAR}
+			</if>
+			<if test="teamAdministratorViewCustom.adminNameLikeOr!=null">
+				OR admin_name LIKE CONCAT('%', #{teamAdministratorViewCustom.adminNameLikeOr,jdbcType=VARCHAR} ,'%') 
+			</if>
+			<if test="teamAdministratorViewCustom.adminPwd!=null">
+				AND admin_pwd = #{teamAdministratorViewCustom.adminPwd,jdbcType=VARCHAR}
+			</if>
+			<if test="teamAdministratorViewCustom.adminPwdNe!=null">
+				AND admin_pwd != #{teamAdministratorViewCustom.adminPwdNe,jdbcType=VARCHAR}
+			</if>
+			<if test="teamAdministratorViewCustom.adminPwdLike!=null">
+				AND admin_pwd LIKE CONCAT('%', #{teamAdministratorViewCustom.adminPwdLike,jdbcType=VARCHAR} ,'%') 
+			</if>
+			<if test="teamAdministratorViewCustom.adminPwdOr!=null">
+				OR admin_pwd = #{teamAdministratorViewCustom.adminPwdOr,jdbcType=VARCHAR}
+			</if>
+			<if test="teamAdministratorViewCustom.adminPwdNeOr!=null">
+				OR admin_pwd != #{teamAdministratorViewCustom.adminPwdNeOr,jdbcType=VARCHAR}
+			</if>
+			<if test="teamAdministratorViewCustom.adminPwdLikeOr!=null">
+				OR admin_pwd LIKE CONCAT('%', #{teamAdministratorViewCustom.adminPwdLikeOr,jdbcType=VARCHAR} ,'%') 
+			</if>
+			<if test="teamAdministratorViewCustom.adminCreatetime!=null">
+				AND admin_createtime = #{teamAdministratorViewCustom.adminCreatetime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="teamAdministratorViewCustom.adminCreatetimeNe!=null">
+				AND admin_createtime != #{teamAdministratorViewCustom.adminCreatetimeNe,jdbcType=TIMESTAMP}
+			</if>
+			<if test="teamAdministratorViewCustom.adminCreatetimeLike!=null">
+				AND admin_createtime LIKE CONCAT('%', #{teamAdministratorViewCustom.adminCreatetimeLike,jdbcType=TIMESTAMP} ,'%') 
+			</if>
+			<if test="teamAdministratorViewCustom.adminCreatetimeOr!=null">
+				OR admin_createtime = #{teamAdministratorViewCustom.adminCreatetimeOr,jdbcType=TIMESTAMP}
+			</if>
+			<if test="teamAdministratorViewCustom.adminCreatetimeNeOr!=null">
+				OR admin_createtime != #{teamAdministratorViewCustom.adminCreatetimeNeOr,jdbcType=TIMESTAMP}
+			</if>
+			<if test="teamAdministratorViewCustom.adminCreatetimeLikeOr!=null">
+				OR admin_createtime LIKE CONCAT('%', #{teamAdministratorViewCustom.adminCreatetimeLikeOr,jdbcType=TIMESTAMP} ,'%') 
+			</if>
+		</if>
+	</sql>
+	<sql id="limit">
+		<if test="page != null">
+			<if test="page.start != null and page.count != null">
+				limit #{page.start,jdbcType=INTEGER},#{page.count,jdbcType=INTEGER}
+			</if>
+		</if>
+	</sql>
+	<sql id="sortDesc">
+		<if test="teamIdDesc == true||teamNameDesc == true||teamCreatetimeDesc == true||administratorIdDesc == true||adminNameDesc == true||adminPwdDesc == true||adminCreatetimeDesc == true">
+			ORDER BY
+			<trim suffix="DESC" suffixOverrides=",">
+				<if test="teamIdDesc == true">
+					team_id,
+				</if>
+				<if test="teamNameDesc == true">
+					team_name,
+				</if>
+				<if test="teamCreatetimeDesc == true">
+					team_createtime,
+				</if>
+				<if test="administratorIdDesc == true">
+					administrator_id,
+				</if>
+				<if test="adminNameDesc == true">
+					admin_name,
+				</if>
+				<if test="adminPwdDesc == true">
+					admin_pwd,
+				</if>
+				<if test="adminCreatetimeDesc == true">
+					admin_createtime,
+				</if>
+			</trim>
+		</if>
+	</sql>
+	
+	<!-- 根据条件查询记录 -->
+	<select id="select" parameterType="jlj.po.vo.TeamAdministratorViewQueryVo" resultMap="BaseResultMap">
+		select * from team_administrator_view
+		<where>
+			<include refid="Field_Where"/>
+		</where>
+		<include refid="sortDesc"/>
+		<include refid="limit"/>
+	</select>
+	
+	<!-- 根据条件查询第一条记录 -->
+	<select id="selectOne" parameterType="jlj.po.vo.TeamAdministratorViewQueryVo" resultMap="BaseResultMap">
+		select * from team_administrator_view
+		<where>
+			<include refid="Field_Where"/>
+		</where>
+		<include refid="sortDesc"/>
+		limit 0,1
+	</select>
+	
+	<!-- 根据条件查询记录条数 -->
+	<select id="selectCount" parameterType="jlj.po.vo.TeamAdministratorViewQueryVo" resultType="java.lang.Integer">
+		select count(*) from team_administrator_view
+		<where>
+			<include refid="Field_Where"/>
+		</where>
+	</select>
+	
+</mapper>

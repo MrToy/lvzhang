@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 查询administrator_info表的mapper配置 -->
+<mapper namespace="jlj.mapper.custom.AdministratorInfoCustomMapper">
+	<!-- 返回结果集重新定义，遇到字段有下划线的需要转换 -->
+	<resultMap id="BaseResultMap" type="jlj.po.custom.AdministratorInfoCustom" >
+		<!-- 主键列 -->
+	    <id column="administrator_id" property="administratorId" jdbcType="INTEGER" />
+	    <result column="admin_name" property="adminName" jdbcType="VARCHAR" />
+	    <result column="admin_pwd" property="adminPwd" jdbcType="VARCHAR" />
+	    <result column="admin_createtime" property="adminCreatetime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<!-- 查询列表需要用到的动态sql -->
+	<sql id="Field_Where">
+		<if test="administratorInfoCustom!=null">
+			<!-- 这里要注意，where值需要加引号，因为类未知；但是对于主键为int型好像会影响mysql性能，
+				但是如果不加引号对字符串类型的输入数据就会报错
+			 -->
+			<if test="administratorInfoCustom.administratorId!=null">
+				AND administrator_id = #{administratorInfoCustom.administratorId,jdbcType=INTEGER}
+			</if>
+			<if test="administratorInfoCustom.administratorIdNe!=null">
+				AND administrator_id != #{administratorInfoCustom.administratorIdNe,jdbcType=INTEGER}
+			</if>
+			<if test="administratorInfoCustom.administratorIdLike!=null">
+				AND administrator_id LIKE CONCAT('%', #{administratorInfoCustom.administratorIdLike,jdbcType=INTEGER} ,'%') 
+			</if>
+			<!-- 所有有大小比较的参数都必须是整型,避免mysql字符位数不足时进行截取前几位比较 -->
+			<if test="administratorInfoCustom.administratorIdGt!=null">
+				AND administrator_id &gt; #{administratorInfoCustom.administratorIdGt,jdbcType=INTEGER}
+			</if>
+			<if test="administratorInfoCustom.administratorIdLt!=null">
+				AND administrator_id &lt; #{administratorInfoCustom.administratorIdLt,jdbcType=INTEGER}
+			</if>
+			<if test="administratorInfoCustom.administratorIdGe!=null">
+				AND administrator_id &gt;= #{administratorInfoCustom.administratorIdGe,jdbcType=INTEGER}
+			</if>
+			<if test="administratorInfoCustom.administratorIdLe!=null">
+				AND administrator_id &lt;= #{administratorInfoCustom.administratorIdLe,jdbcType=INTEGER}
+			</if>
+			<if test="administratorInfoCustom.administratorIdOr!=null">
+				OR administrator_id = #{administratorInfoCustom.administratorIdOr,jdbcType=INTEGER}
+			</if>
+			<if test="administratorInfoCustom.administratorIdNeOr!=null">
+				OR administrator_id != #{administratorInfoCustom.administratorIdNeOr,jdbcType=INTEGER}
+			</if>
+			<if test="administratorInfoCustom.administratorIdLikeOr!=null">
+				OR administrator_id LIKE CONCAT('%', #{administratorInfoCustom.administratorIdLikeOr,jdbcType=INTEGER} ,'%') 
+			</if>
+			<!-- 所有有大小比较的参数都必须是整型,避免mysql字符位数不足时进行截取前几位比较 -->
+			<if test="administratorInfoCustom.administratorIdGtOr!=null">
+				OR administrator_id &gt; #{administratorInfoCustom.administratorIdGtOr,jdbcType=INTEGER}
+			</if>
+			<if test="administratorInfoCustom.administratorIdLtOr!=null">
+				OR administrator_id &lt; #{administratorInfoCustom.administratorIdLtOr,jdbcType=INTEGER}
+			</if>
+			<if test="administratorInfoCustom.administratorIdGeOr!=null">
+				OR administrator_id &gt;= #{administratorInfoCustom.administratorIdGeOr,jdbcType=INTEGER}
+			</if>
+			<if test="administratorInfoCustom.administratorIdLeOr!=null">
+				OR administrator_id &lt;= #{administratorInfoCustom.administratorIdLeOr,jdbcType=INTEGER}
+			</if>
+			<if test="administratorInfoCustom.adminName!=null">
+				AND admin_name = #{administratorInfoCustom.adminName,jdbcType=VARCHAR}
+			</if>
+			<if test="administratorInfoCustom.adminNameNe!=null">
+				AND admin_name != #{administratorInfoCustom.adminNameNe,jdbcType=VARCHAR}
+			</if>
+			<if test="administratorInfoCustom.adminNameLike!=null">
+				AND admin_name LIKE CONCAT('%', #{administratorInfoCustom.adminNameLike,jdbcType=VARCHAR} ,'%') 
+			</if>
+			<if test="administratorInfoCustom.adminNameOr!=null">
+				OR admin_name = #{administratorInfoCustom.adminNameOr,jdbcType=VARCHAR}
+			</if>
+			<if test="administratorInfoCustom.adminNameNeOr!=null">
+				OR admin_name != #{administratorInfoCustom.adminNameNeOr,jdbcType=VARCHAR}
+			</if>
+			<if test="administratorInfoCustom.adminNameLikeOr!=null">
+				OR admin_name LIKE CONCAT('%', #{administratorInfoCustom.adminNameLikeOr,jdbcType=VARCHAR} ,'%') 
+			</if>
+			<if test="administratorInfoCustom.adminPwd!=null">
+				AND admin_pwd = #{administratorInfoCustom.adminPwd,jdbcType=VARCHAR}
+			</if>
+			<if test="administratorInfoCustom.adminPwdNe!=null">
+				AND admin_pwd != #{administratorInfoCustom.adminPwdNe,jdbcType=VARCHAR}
+			</if>
+			<if test="administratorInfoCustom.adminPwdLike!=null">
+				AND admin_pwd LIKE CONCAT('%', #{administratorInfoCustom.adminPwdLike,jdbcType=VARCHAR} ,'%') 
+			</if>
+			<if test="administratorInfoCustom.adminPwdOr!=null">
+				OR admin_pwd = #{administratorInfoCustom.adminPwdOr,jdbcType=VARCHAR}
+			</if>
+			<if test="administratorInfoCustom.adminPwdNeOr!=null">
+				OR admin_pwd != #{administratorInfoCustom.adminPwdNeOr,jdbcType=VARCHAR}
+			</if>
+			<if test="administratorInfoCustom.adminPwdLikeOr!=null">
+				OR admin_pwd LIKE CONCAT('%', #{administratorInfoCustom.adminPwdLikeOr,jdbcType=VARCHAR} ,'%') 
+			</if>
+			<if test="administratorInfoCustom.adminCreatetime!=null">
+				AND admin_createtime = #{administratorInfoCustom.adminCreatetime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="administratorInfoCustom.adminCreatetimeNe!=null">
+				AND admin_createtime != #{administratorInfoCustom.adminCreatetimeNe,jdbcType=TIMESTAMP}
+			</if>
+			<if test="administratorInfoCustom.adminCreatetimeLike!=null">
+				AND admin_createtime LIKE CONCAT('%', #{administratorInfoCustom.adminCreatetimeLike,jdbcType=TIMESTAMP} ,'%') 
+			</if>
+			<if test="administratorInfoCustom.adminCreatetimeOr!=null">
+				OR admin_createtime = #{administratorInfoCustom.adminCreatetimeOr,jdbcType=TIMESTAMP}
+			</if>
+			<if test="administratorInfoCustom.adminCreatetimeNeOr!=null">
+				OR admin_createtime != #{administratorInfoCustom.adminCreatetimeNeOr,jdbcType=TIMESTAMP}
+			</if>
+			<if test="administratorInfoCustom.adminCreatetimeLikeOr!=null">
+				OR admin_createtime LIKE CONCAT('%', #{administratorInfoCustom.adminCreatetimeLikeOr,jdbcType=TIMESTAMP} ,'%') 
+			</if>
+		</if>
+	</sql>
+	<sql id="limit">
+		<if test="page != null">
+			<if test="page.start != null and page.count != null">
+				limit #{page.start,jdbcType=INTEGER},#{page.count,jdbcType=INTEGER}
+			</if>
+		</if>
+	</sql>
+	<sql id="sortDesc">
+		<if test="administratorIdDesc == true||adminNameDesc == true||adminPwdDesc == true||adminCreatetimeDesc == true">
+			ORDER BY
+			<trim suffix="DESC" suffixOverrides=",">
+				<if test="administratorIdDesc == true">
+					administrator_id,
+				</if>
+				<if test="adminNameDesc == true">
+					admin_name,
+				</if>
+				<if test="adminPwdDesc == true">
+					admin_pwd,
+				</if>
+				<if test="adminCreatetimeDesc == true">
+					admin_createtime,
+				</if>
+			</trim>
+		</if>
+	</sql>
+	<!-- 插入记录为空跳过，并且返回插入数据的主键 -->
+	<insert id="insertSelectiveReturnPrimaryId" parameterType="jlj.po.AdministratorInfo" >
+		<!-- 
+		将插入数据的主键返回，返回到administrator_info对象中
+		SELECT LAST_INSERT_ID()：得到刚insert进去记录的主键值，只适用与自增主键
+		keyProperty：将查询到主键值设置到parameterType指定的对象的哪个属性
+		order：SELECT LAST_INSERT_ID()执行顺序，相对于insert语句来说它的执行顺序
+		resultType：指定SELECT LAST_INSERT_ID()的结果类型
+		 -->
+		<selectKey keyProperty="administratorId" order="AFTER" resultType="java.lang.Integer">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into administrator_info
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="administratorId != null" >
+				administrator_id,
+	      	</if>
+			<if test="adminName != null" >
+				admin_name,
+	      	</if>
+			<if test="adminPwd != null" >
+				admin_pwd,
+	      	</if>
+			<if test="adminCreatetime != null" >
+				admin_createtime,
+	      	</if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="administratorId != null" >
+				#{administratorId,jdbcType=INTEGER},
+	      	</if>
+			<if test="adminName != null" >
+				#{adminName,jdbcType=VARCHAR},
+	      	</if>
+			<if test="adminPwd != null" >
+				#{adminPwd,jdbcType=VARCHAR},
+	      	</if>
+			<if test="adminCreatetime != null" >
+				#{adminCreatetime,jdbcType=TIMESTAMP},
+	      	</if>
+	    </trim>
+		<!-- 
+		使用mysql的uuid（）生成主键
+		执行过程：
+		首先通过uuid()得到主键，将主键设置到user对象的id属性中
+		其次在insert执行时，从user对象中取出id属性值
+		 -->
+		<!--
+		insert into administrator_info
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="administratorId != null" >
+				administrator_id,
+	      	</if>
+			<if test="adminName != null" >
+				admin_name,
+	      	</if>
+			<if test="adminPwd != null" >
+				admin_pwd,
+	      	</if>
+			<if test="adminCreatetime != null" >
+				admin_createtime,
+	      	</if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="administratorId != null" >
+				#{administratorId,jdbcType=INTEGER},
+	      	</if>
+			<if test="adminName != null" >
+				#{adminName,jdbcType=VARCHAR},
+	      	</if>
+			<if test="adminPwd != null" >
+				#{adminPwd,jdbcType=VARCHAR},
+	      	</if>
+			<if test="adminCreatetime != null" >
+				#{adminCreatetime,jdbcType=TIMESTAMP},
+	      	</if>
+	    </trim>
+		-->
+	</insert>
+	
+	
+	<!-- 根据条件查询记录 -->
+	<select id="select" parameterType="jlj.po.vo.AdministratorInfoQueryVo" resultMap="BaseResultMap">
+		select * from administrator_info
+		<where>
+			<include refid="Field_Where"/>
+		</where>
+		<include refid="sortDesc"/>
+		<include refid="limit"/>
+	</select>
+	
+	<!-- 根据条件查询第一条记录 -->
+	<select id="selectOne" parameterType="jlj.po.vo.AdministratorInfoQueryVo" resultMap="BaseResultMap">
+		select * from administrator_info
+		<where>
+			<include refid="Field_Where"/>
+		</where>
+		<include refid="sortDesc"/>
+		limit 0,1
+	</select>
+	
+	<!-- 根据条件查询记录条数 -->
+	<select id="selectCount" parameterType="jlj.po.vo.AdministratorInfoQueryVo" resultType="java.lang.Integer">
+		select count(*) from administrator_info
+		<where>
+			<include refid="Field_Where"/>
+		</where>
+	</select>
+	
+	<!-- 根据条件删除记录 -->
+	<delete id="delete" parameterType="jlj.po.vo.AdministratorInfoQueryVo">
+		delete from administrator_info
+		<where>
+			<include refid="Field_Where"/>
+		</where>
+	</delete>
+	
+</mapper>

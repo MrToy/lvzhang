@@ -1,0 +1,89 @@
+body {
+  padding-top: 0;
+  padding-bottom: 0; }
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0; }
+
+a:hover, a:focus {
+  text-decoration: none; }
+
+.container-main {
+  background-color: #fff;
+  width: 1078px;
+  height: 320px;
+  overflow: hidden; }
+
+ul.product {
+  width: 1000%;
+  overflow: hidden; }
+  ul.product li {
+    width: 270px;
+    height: 280px;
+    margin-top: 20px;
+    border-left: 1px solid #d0d0d0;
+    float: left; }
+    ul.product li:first-child {
+      border: none; }
+  ul.product li > a {
+    display: block;
+    width: 240px;
+    height: 220px;
+    text-align: center;
+    margin: 0 auto;
+    overflow: hidden; }
+    ul.product li > a img {
+      max-height: 241px;
+      max-width: 161px;
+      transition: transform 4s ease-out 0s;
+      -ms-transform: transform 4s ease-out 0s;
+      /* IE 9 */
+      -webkit-transition: transform 4s ease-out 0s;
+      /* Firefox 4 */
+      -o-transition: transform 4s ease-out 0s;
+      /* Safari and Chrome */
+      -moz-transition: transform 4s ease-out 0s;
+      /* Opera */ }
+      ul.product li > a img:hover {
+        transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        /* Firefox 4 */
+        -webkit-transform: scale(1.1);
+        /* Firefox 4 */
+        -o-transform: scale(1.1);
+        /* Safari and Chrome */
+        -moz-transform: scale(1.1);
+        /* Opera */ }
+
+.protxt {
+  text-align: center;
+  height: 19px;
+  line-height: 19px;
+  margin-top: 9px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap; }
+  .protxt a {
+    color: #5c5c5c;
+    font-weight: bold;
+    font-size: 14px; }
+
+.banner .carousel-indicators {
+  bottom: 0; }
+  
+body{ font:12px/1.5em \5B8B\4F53,Arial,Helvetica,sans-serif; color:#333;}
+:focus{outline:none;}
+em,th{font-style:normal;font-weight:normal;}
+.table{border-collapse:collapse;border-spacing:0;empty-cells:show;}
+h3{ margin: 0; padding: 0;}
+.box_os{ height:auto; overflow:hidden; width:131px; position:fixed; right:0; top:88px; _position:absolute; z-index:9999;}
+.box_os .os_x{ background-color:#f7f7f7; background-position:2px 2px; width:18px; height:20px; float:right; display:inline; cursor:pointer;}
+.box_os .osqq{ width:129px; border:1px solid #D1D1D1; background-color:#fff; background-position:0 -120px; clear:both; padding:10px 0 8px 0; text-align:center;}
+.box_os .osqq p{ height:auto; line-height:20px;width:129px; margin-top:8px;}
+.box_os .osqq p strong{ color:#666;}
+.box_os .osqq a { text-decoration: none;}
+.onlineService{ background:none; display:none; width:39px; *width:84px; height:178px; ;position:fixed; right:0; top:44px; _position:absolute;}
+.onlineService .ico_os{ background-position:-2px -20px; border:1px solid #c7c7c7; cursor:pointer; width:39px; height:98px; float:right;}
+ 

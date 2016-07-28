@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="jlj.mapper.RewardsInfoMapper" >
+  <resultMap id="BaseResultMap" type="jlj.po.RewardsInfo" >
+    <id column="awards_id" property="awardsId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="awards_vipnumber" property="awardsVipnumber" jdbcType="INTEGER" />
+    <result column="awards_normalnumber" property="awardsNormalnumber" jdbcType="INTEGER" />
+    <result column="awards_time" property="awardsTime" jdbcType="TIMESTAMP" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    awards_id, user_id, awards_vipnumber, awards_normalnumber, awards_time, description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from rewards_info
+    where awards_id = #{awardsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from rewards_info
+    where awards_id = #{awardsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="jlj.po.RewardsInfo" >
+    insert into rewards_info (awards_id, user_id, awards_vipnumber, 
+      awards_normalnumber, awards_time, description
+      )
+    values (#{awardsId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{awardsVipnumber,jdbcType=INTEGER}, 
+      #{awardsNormalnumber,jdbcType=INTEGER}, #{awardsTime,jdbcType=TIMESTAMP}, #{description,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="jlj.po.RewardsInfo" >
+    insert into rewards_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="awardsId != null" >
+        awards_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="awardsVipnumber != null" >
+        awards_vipnumber,
+      </if>
+      <if test="awardsNormalnumber != null" >
+        awards_normalnumber,
+      </if>
+      <if test="awardsTime != null" >
+        awards_time,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="awardsId != null" >
+        #{awardsId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="awardsVipnumber != null" >
+        #{awardsVipnumber,jdbcType=INTEGER},
+      </if>
+      <if test="awardsNormalnumber != null" >
+        #{awardsNormalnumber,jdbcType=INTEGER},
+      </if>
+      <if test="awardsTime != null" >
+        #{awardsTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="jlj.po.RewardsInfo" >
+    update rewards_info
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="awardsVipnumber != null" >
+        awards_vipnumber = #{awardsVipnumber,jdbcType=INTEGER},
+      </if>
+      <if test="awardsNormalnumber != null" >
+        awards_normalnumber = #{awardsNormalnumber,jdbcType=INTEGER},
+      </if>
+      <if test="awardsTime != null" >
+        awards_time = #{awardsTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where awards_id = #{awardsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="jlj.po.RewardsInfo" >
+    update rewards_info
+    set user_id = #{userId,jdbcType=INTEGER},
+      awards_vipnumber = #{awardsVipnumber,jdbcType=INTEGER},
+      awards_normalnumber = #{awardsNormalnumber,jdbcType=INTEGER},
+      awards_time = #{awardsTime,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=VARCHAR}
+    where awards_id = #{awardsId,jdbcType=INTEGER}
+  </update>
+</mapper>

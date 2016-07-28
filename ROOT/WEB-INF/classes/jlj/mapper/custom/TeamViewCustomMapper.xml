@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 查询team_view表的mapper配置 -->
+<mapper namespace="jlj.mapper.custom.TeamViewCustomMapper">
+	<!-- 返回结果集重新定义，遇到字段有下划线的需要转换 -->
+	<resultMap id="BaseResultMap" type="jlj.po.custom.TeamViewCustom" >
+	    <result column="team_id" property="teamId" jdbcType="INTEGER" />
+	    <result column="team_name" property="teamName" jdbcType="VARCHAR" />
+	    <result column="team_count" property="teamCount" jdbcType="INTEGER" />
+	</resultMap>
+	<!-- 查询列表需要用到的动态sql -->
+	<sql id="Field_Where">
+		<if test="teamViewCustom!=null">
+			<!-- 这里要注意，where值需要加引号，因为类未知；但是对于主键为int型好像会影响mysql性能，
+				但是如果不加引号对字符串类型的输入数据就会报错
+			 -->
+			<if test="teamViewCustom.teamId!=null">
+				AND team_id = #{teamViewCustom.teamId,jdbcType=INTEGER}
+			</if>
+			<if test="teamViewCustom.teamIdNe!=null">
+				AND team_id != #{teamViewCustom.teamIdNe,jdbcType=INTEGER}
+			</if>
+			<if test="teamViewCustom.teamIdLike!=null">
+				AND team_id LIKE CONCAT('%', #{teamViewCustom.teamIdLike,jdbcType=INTEGER} ,'%') 
+			</if>
+			<!-- 所有有大小比较的参数都必须是整型,避免mysql字符位数不足时进行截取前几位比较 -->
+			<if test="teamViewCustom.teamIdGt!=null">
+				AND team_id &gt; #{teamViewCustom.teamIdGt,jdbcType=INTEGER}
+			</if>
+			<if test="teamViewCustom.teamIdLt!=null">
+				AND team_id &lt; #{teamViewCustom.teamIdLt,jdbcType=INTEGER}
+			</if>
+			<if test="teamViewCustom.teamIdGe!=null">
+				AND team_id &gt;= #{teamViewCustom.teamIdGe,jdbcType=INTEGER}
+			</if>
+			<if test="teamViewCustom.teamIdLe!=null">
+				AND team_id &lt;= #{teamViewCustom.teamIdLe,jdbcType=INTEGER}
+			</if>
+			<if test="teamViewCustom.teamIdOr!=null">
+				OR team_id = #{teamViewCustom.teamIdOr,jdbcType=INTEGER}
+			</if>
+			<if test="teamViewCustom.teamIdNeOr!=null">
+				OR team_id != #{teamViewCustom.teamIdNeOr,jdbcType=INTEGER}
+			</if>
+			<if test="teamViewCustom.teamIdLikeOr!=null">
+				OR team_id LIKE CONCAT('%', #{teamViewCustom.teamIdLikeOr,jdbcType=INTEGER} ,'%') 
+			</if>
+			<!-- 所有有大小比较的参数都必须是整型,避免mysql字符位数不足时进行截取前几位比较 -->
+			<if test="teamViewCustom.teamIdGtOr!=null">
+				OR team_id &gt; #{teamViewCustom.teamIdGtOr,jdbcType=INTEGER}
+			</if>
+			<if test="teamViewCustom.teamIdLtOr!=null">
+				OR team_id &lt; #{teamViewCustom.teamIdLtOr,jdbcType=INTEGER}
+			</if>
+			<if test="teamViewCustom.teamIdGeOr!=null">
+				OR team_id &gt;= #{teamViewCustom.teamIdGeOr,jdbcType=INTEGER}
+			</if>
+			<if test="teamViewCustom.teamIdLeOr!=null">
+				OR team_id &lt;= #{teamViewCustom.teamIdLeOr,jdbcType=INTEGER}
+			</if>
+			<if test="teamViewCustom.teamName!=null">
+				AND team_name = #{teamViewCustom.teamName,jdbcType=VARCHAR}
+			</if>
+			<if test="teamViewCustom.teamNameNe!=null">
+				AND team_name != #{teamViewCustom.teamNameNe,jdbcType=VARCHAR}
+			</if>
+			<if test="teamViewCustom.teamNameLike!=null">
+				AND team_name LIKE CONCAT('%', #{teamViewCustom.teamNameLike,jdbcType=VARCHAR} ,'%') 
+			</if>
+			<if test="teamViewCustom.teamNameOr!=null">
+				OR team_name = #{teamViewCustom.teamNameOr,jdbcType=VARCHAR}
+			</if>
+			<if test="teamViewCustom.teamNameNeOr!=null">
+				OR team_name != #{teamViewCustom.teamNameNeOr,jdbcType=VARCHAR}
+			</if>
+			<if test="teamViewCustom.teamNameLikeOr!=null">
+				OR team_name LIKE CONCAT('%', #{teamViewCustom.teamNameLikeOr,jdbcType=VARCHAR} ,'%') 
+			</if>
+			<if test="teamViewCustom.teamCount!=null">
+				AND team_count = #{teamViewCustom.teamCount,jdbcType=INTEGER}
+			</if>
+			<if test="teamViewCustom.teamCountNe!=null">
+				AND team_count != #{teamViewCustom.teamCountNe,jdbcType=INTEGER}
+			</if>
+			<if test="teamViewCustom.teamCountLike!=null">
+				AND team_count LIKE CONCAT('%', #{teamViewCustom.teamCountLike,jdbcType=INTEGER} ,'%') 
+			</if>
+			<!-- 所有有大小比较的参数都必须是整型,避免mysql字符位数不足时进行截取前几位比较 -->
+			<if test="teamViewCustom.teamCountGt!=null">
+				AND team_count &gt; #{teamViewCustom.teamCountGt,jdbcType=INTEGER}
+			</if>
+			<if test="teamViewCustom.teamCountLt!=null">
+				AND team_count &lt; #{teamViewCustom.teamCountLt,jdbcType=INTEGER}
+			</if>
+			<if test="teamViewCustom.teamCountGe!=null">
+				AND team_count &gt;= #{teamViewCustom.teamCountGe,jdbcType=INTEGER}
+			</if>
+			<if test="teamViewCustom.teamCountLe!=null">
+				AND team_count &lt;= #{teamViewCustom.teamCountLe,jdbcType=INTEGER}
+			</if>
+			<if test="teamViewCustom.teamCountOr!=null">
+				OR team_count = #{teamViewCustom.teamCountOr,jdbcType=INTEGER}
+			</if>
+			<if test="teamViewCustom.teamCountNeOr!=null">
+				OR team_count != #{teamViewCustom.teamCountNeOr,jdbcType=INTEGER}
+			</if>
+			<if test="teamViewCustom.teamCountLikeOr!=null">
+				OR team_count LIKE CONCAT('%', #{teamViewCustom.teamCountLikeOr,jdbcType=INTEGER} ,'%') 
+			</if>
+			<!-- 所有有大小比较的参数都必须是整型,避免mysql字符位数不足时进行截取前几位比较 -->
+			<if test="teamViewCustom.teamCountGtOr!=null">
+				OR team_count &gt; #{teamViewCustom.teamCountGtOr,jdbcType=INTEGER}
+			</if>
+			<if test="teamViewCustom.teamCountLtOr!=null">
+				OR team_count &lt; #{teamViewCustom.teamCountLtOr,jdbcType=INTEGER}
+			</if>
+			<if test="teamViewCustom.teamCountGeOr!=null">
+				OR team_count &gt;= #{teamViewCustom.teamCountGeOr,jdbcType=INTEGER}
+			</if>
+			<if test="teamViewCustom.teamCountLeOr!=null">
+				OR team_count &lt;= #{teamViewCustom.teamCountLeOr,jdbcType=INTEGER}
+			</if>
+		</if>
+	</sql>
+	<sql id="limit">
+		<if test="page != null">
+			<if test="page.start != null and page.count != null">
+				limit #{page.start,jdbcType=INTEGER},#{page.count,jdbcType=INTEGER}
+			</if>
+		</if>
+	</sql>
+	<sql id="sortDesc">
+		<if test="teamIdDesc == true||teamNameDesc == true||teamCountDesc == true">
+			ORDER BY
+			<trim suffix="DESC" suffixOverrides=",">
+				<if test="teamIdDesc == true">
+					team_id,
+				</if>
+				<if test="teamNameDesc == true">
+					team_name,
+				</if>
+				<if test="teamCountDesc == true">
+					team_count,
+				</if>
+			</trim>
+		</if>
+	</sql>
+	
+	<!-- 根据条件查询记录 -->
+	<select id="select" parameterType="jlj.po.vo.TeamViewQueryVo" resultMap="BaseResultMap">
+		select * from team_view
+		<where>
+			<include refid="Field_Where"/>
+		</where>
+		<include refid="sortDesc"/>
+		<include refid="limit"/>
+	</select>
+	
+	<!-- 根据条件查询第一条记录 -->
+	<select id="selectOne" parameterType="jlj.po.vo.TeamViewQueryVo" resultMap="BaseResultMap">
+		select * from team_view
+		<where>
+			<include refid="Field_Where"/>
+		</where>
+		<include refid="sortDesc"/>
+		limit 0,1
+	</select>
+	
+	<!-- 根据条件查询记录条数 -->
+	<select id="selectCount" parameterType="jlj.po.vo.TeamViewQueryVo" resultType="java.lang.Integer">
+		select count(*) from team_view
+		<where>
+			<include refid="Field_Where"/>
+		</where>
+	</select>
+	
+</mapper>

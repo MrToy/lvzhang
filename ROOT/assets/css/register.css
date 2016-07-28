@@ -1,0 +1,100 @@
+body{
+    height: 100%;
+    width: 100%;
+    background: url("../images/login/8.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+.register_panel{
+    height:800px;
+}
+.register_form{
+    background-color: #ffffff;
+    padding: 50px;
+    border-radius: 5px;
+    margin-top: 50px;
+}
+.err_panel{
+    color:#e15f63;
+    margin-left: 20px;
+    padding: 10px;
+    margin-top:-20px;
+}
+.err_tip{
+    vertical-align: middle;
+}
+.txt_input{
+    border-radius: 0;
+}
+.txt_input:focus{
+    box-shadow: none;
+}
+.btn_reg{
+    display: inline-block;
+    overflow: visible;
+    vertical-align: middle;
+    text-align: center;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-width: 1px;
+    border-style: solid;
+    cursor: pointer;
+    background-color: #44b549;
+    background-image: -moz-linear-gradient(top,#44b549 0,#44b549 100%);
+    background-image: -webkit-gradient(linear,0 0,0 100%,from(#44b549),to(#44b549));
+    background-image: -webkit-linear-gradient(top,#44b549 0,#44b549 100%);
+    background-image: -o-linear-gradient(top,#44b549 0,#44b549 100%);
+    background-image: linear-gradient(to bottom,#44b549 0,#44b549 100%);
+    border-color: #44b549;
+    color: #fff;
+    height: 33px;
+    line-height: 33px;
+    *line-height: 31px;
+    width: 80px;
+    padding-left: 0;
+    padding-right: 0;
+}
+.btn_reg:hover{
+    background-color:#2f9833;
+    background-image:-moz-linear-gradient(top,#2f9833 0,#2f9833 100%);
+    background-image:-webkit-gradient(linear,0 0,0 100%,from(#2f9833),to(#2f9833));
+    background-image:-webkit-linear-gradient(top,#2f9833 0,#2f9833 100%);
+    background-image:-o-linear-gradient(top,#2f9833 0,#2f9833 100%);
+    background-image:linear-gradient(to bottom,#2f9833 0,#2f9833 100%);
+    border-color:#2f9833;
+    box-shadow:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+    color:#fff
+}
+.btn_res{
+    display: inline-block;
+    overflow: visible;
+    vertical-align: middle;
+    text-align: center;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-width: 1px;
+    border-style: solid;
+    cursor: pointer;
+    width: 80px;
+    padding-left: 0;
+    padding-right: 0;
+}
+.btn_res:hover{
+    display: inline-block;
+    overflow: visible;
+    vertical-align: middle;
+    text-align: center;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-width: 1px;
+    border-style: solid;
+    cursor: pointer;
+    width: 80px;
+    padding-left: 0;
+    padding-right: 0;
+}

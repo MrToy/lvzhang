@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 查询rewards_info表的mapper配置 -->
+<mapper namespace="jlj.mapper.custom.RewardsInfoCustomMapper">
+	<!-- 返回结果集重新定义，遇到字段有下划线的需要转换 -->
+	<resultMap id="BaseResultMap" type="jlj.po.custom.RewardsInfoCustom" >
+		<!-- 主键列 -->
+	    <id column="awards_id" property="awardsId" jdbcType="INTEGER" />
+	    <result column="user_id" property="userId" jdbcType="INTEGER" />
+	    <result column="awards_vipnumber" property="awardsVipnumber" jdbcType="INTEGER" />
+	    <result column="awards_normalnumber" property="awardsNormalnumber" jdbcType="INTEGER" />
+	    <result column="awards_time" property="awardsTime" jdbcType="TIMESTAMP" />
+	    <result column="description" property="description" jdbcType="VARCHAR" />
+	</resultMap>
+	<!-- 查询列表需要用到的动态sql -->
+	<sql id="Field_Where">
+		<if test="rewardsInfoCustom!=null">
+			<!-- 这里要注意，where值需要加引号，因为类未知；但是对于主键为int型好像会影响mysql性能，
+				但是如果不加引号对字符串类型的输入数据就会报错
+			 -->
+			<if test="rewardsInfoCustom.awardsId!=null">
+				AND awards_id = #{rewardsInfoCustom.awardsId,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.awardsIdNe!=null">
+				AND awards_id != #{rewardsInfoCustom.awardsIdNe,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.awardsIdLike!=null">
+				AND awards_id LIKE CONCAT('%', #{rewardsInfoCustom.awardsIdLike,jdbcType=INTEGER} ,'%') 
+			</if>
+			<!-- 所有有大小比较的参数都必须是整型,避免mysql字符位数不足时进行截取前几位比较 -->
+			<if test="rewardsInfoCustom.awardsIdGt!=null">
+				AND awards_id &gt; #{rewardsInfoCustom.awardsIdGt,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.awardsIdLt!=null">
+				AND awards_id &lt; #{rewardsInfoCustom.awardsIdLt,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.awardsIdGe!=null">
+				AND awards_id &gt;= #{rewardsInfoCustom.awardsIdGe,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.awardsIdLe!=null">
+				AND awards_id &lt;= #{rewardsInfoCustom.awardsIdLe,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.awardsIdOr!=null">
+				OR awards_id = #{rewardsInfoCustom.awardsIdOr,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.awardsIdNeOr!=null">
+				OR awards_id != #{rewardsInfoCustom.awardsIdNeOr,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.awardsIdLikeOr!=null">
+				OR awards_id LIKE CONCAT('%', #{rewardsInfoCustom.awardsIdLikeOr,jdbcType=INTEGER} ,'%') 
+			</if>
+			<!-- 所有有大小比较的参数都必须是整型,避免mysql字符位数不足时进行截取前几位比较 -->
+			<if test="rewardsInfoCustom.awardsIdGtOr!=null">
+				OR awards_id &gt; #{rewardsInfoCustom.awardsIdGtOr,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.awardsIdLtOr!=null">
+				OR awards_id &lt; #{rewardsInfoCustom.awardsIdLtOr,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.awardsIdGeOr!=null">
+				OR awards_id &gt;= #{rewardsInfoCustom.awardsIdGeOr,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.awardsIdLeOr!=null">
+				OR awards_id &lt;= #{rewardsInfoCustom.awardsIdLeOr,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.userId!=null">
+				AND user_id = #{rewardsInfoCustom.userId,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.userIdNe!=null">
+				AND user_id != #{rewardsInfoCustom.userIdNe,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.userIdLike!=null">
+				AND user_id LIKE CONCAT('%', #{rewardsInfoCustom.userIdLike,jdbcType=INTEGER} ,'%') 
+			</if>
+			<!-- 所有有大小比较的参数都必须是整型,避免mysql字符位数不足时进行截取前几位比较 -->
+			<if test="rewardsInfoCustom.userIdGt!=null">
+				AND user_id &gt; #{rewardsInfoCustom.userIdGt,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.userIdLt!=null">
+				AND user_id &lt; #{rewardsInfoCustom.userIdLt,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.userIdGe!=null">
+				AND user_id &gt;= #{rewardsInfoCustom.userIdGe,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.userIdLe!=null">
+				AND user_id &lt;= #{rewardsInfoCustom.userIdLe,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.userIdOr!=null">
+				OR user_id = #{rewardsInfoCustom.userIdOr,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.userIdNeOr!=null">
+				OR user_id != #{rewardsInfoCustom.userIdNeOr,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.userIdLikeOr!=null">
+				OR user_id LIKE CONCAT('%', #{rewardsInfoCustom.userIdLikeOr,jdbcType=INTEGER} ,'%') 
+			</if>
+			<!-- 所有有大小比较的参数都必须是整型,避免mysql字符位数不足时进行截取前几位比较 -->
+			<if test="rewardsInfoCustom.userIdGtOr!=null">
+				OR user_id &gt; #{rewardsInfoCustom.userIdGtOr,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.userIdLtOr!=null">
+				OR user_id &lt; #{rewardsInfoCustom.userIdLtOr,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.userIdGeOr!=null">
+				OR user_id &gt;= #{rewardsInfoCustom.userIdGeOr,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.userIdLeOr!=null">
+				OR user_id &lt;= #{rewardsInfoCustom.userIdLeOr,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.awardsVipnumber!=null">
+				AND awards_vipnumber = #{rewardsInfoCustom.awardsVipnumber,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.awardsVipnumberNe!=null">
+				AND awards_vipnumber != #{rewardsInfoCustom.awardsVipnumberNe,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.awardsVipnumberLike!=null">
+				AND awards_vipnumber LIKE CONCAT('%', #{rewardsInfoCustom.awardsVipnumberLike,jdbcType=INTEGER} ,'%') 
+			</if>
+			<!-- 所有有大小比较的参数都必须是整型,避免mysql字符位数不足时进行截取前几位比较 -->
+			<if test="rewardsInfoCustom.awardsVipnumberGt!=null">
+				AND awards_vipnumber &gt; #{rewardsInfoCustom.awardsVipnumberGt,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.awardsVipnumberLt!=null">
+				AND awards_vipnumber &lt; #{rewardsInfoCustom.awardsVipnumberLt,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.awardsVipnumberGe!=null">
+				AND awards_vipnumber &gt;= #{rewardsInfoCustom.awardsVipnumberGe,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.awardsVipnumberLe!=null">
+				AND awards_vipnumber &lt;= #{rewardsInfoCustom.awardsVipnumberLe,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.awardsVipnumberOr!=null">
+				OR awards_vipnumber = #{rewardsInfoCustom.awardsVipnumberOr,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.awardsVipnumberNeOr!=null">
+				OR awards_vipnumber != #{rewardsInfoCustom.awardsVipnumberNeOr,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.awardsVipnumberLikeOr!=null">
+				OR awards_vipnumber LIKE CONCAT('%', #{rewardsInfoCustom.awardsVipnumberLikeOr,jdbcType=INTEGER} ,'%') 
+			</if>
+			<!-- 所有有大小比较的参数都必须是整型,避免mysql字符位数不足时进行截取前几位比较 -->
+			<if test="rewardsInfoCustom.awardsVipnumberGtOr!=null">
+				OR awards_vipnumber &gt; #{rewardsInfoCustom.awardsVipnumberGtOr,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.awardsVipnumberLtOr!=null">
+				OR awards_vipnumber &lt; #{rewardsInfoCustom.awardsVipnumberLtOr,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.awardsVipnumberGeOr!=null">
+				OR awards_vipnumber &gt;= #{rewardsInfoCustom.awardsVipnumberGeOr,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.awardsVipnumberLeOr!=null">
+				OR awards_vipnumber &lt;= #{rewardsInfoCustom.awardsVipnumberLeOr,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.awardsNormalnumber!=null">
+				AND awards_normalnumber = #{rewardsInfoCustom.awardsNormalnumber,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.awardsNormalnumberNe!=null">
+				AND awards_normalnumber != #{rewardsInfoCustom.awardsNormalnumberNe,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.awardsNormalnumberLike!=null">
+				AND awards_normalnumber LIKE CONCAT('%', #{rewardsInfoCustom.awardsNormalnumberLike,jdbcType=INTEGER} ,'%') 
+			</if>
+			<!-- 所有有大小比较的参数都必须是整型,避免mysql字符位数不足时进行截取前几位比较 -->
+			<if test="rewardsInfoCustom.awardsNormalnumberGt!=null">
+				AND awards_normalnumber &gt; #{rewardsInfoCustom.awardsNormalnumberGt,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.awardsNormalnumberLt!=null">
+				AND awards_normalnumber &lt; #{rewardsInfoCustom.awardsNormalnumberLt,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.awardsNormalnumberGe!=null">
+				AND awards_normalnumber &gt;= #{rewardsInfoCustom.awardsNormalnumberGe,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.awardsNormalnumberLe!=null">
+				AND awards_normalnumber &lt;= #{rewardsInfoCustom.awardsNormalnumberLe,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.awardsNormalnumberOr!=null">
+				OR awards_normalnumber = #{rewardsInfoCustom.awardsNormalnumberOr,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.awardsNormalnumberNeOr!=null">
+				OR awards_normalnumber != #{rewardsInfoCustom.awardsNormalnumberNeOr,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.awardsNormalnumberLikeOr!=null">
+				OR awards_normalnumber LIKE CONCAT('%', #{rewardsInfoCustom.awardsNormalnumberLikeOr,jdbcType=INTEGER} ,'%') 
+			</if>
+			<!-- 所有有大小比较的参数都必须是整型,避免mysql字符位数不足时进行截取前几位比较 -->
+			<if test="rewardsInfoCustom.awardsNormalnumberGtOr!=null">
+				OR awards_normalnumber &gt; #{rewardsInfoCustom.awardsNormalnumberGtOr,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.awardsNormalnumberLtOr!=null">
+				OR awards_normalnumber &lt; #{rewardsInfoCustom.awardsNormalnumberLtOr,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.awardsNormalnumberGeOr!=null">
+				OR awards_normalnumber &gt;= #{rewardsInfoCustom.awardsNormalnumberGeOr,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.awardsNormalnumberLeOr!=null">
+				OR awards_normalnumber &lt;= #{rewardsInfoCustom.awardsNormalnumberLeOr,jdbcType=INTEGER}
+			</if>
+			<if test="rewardsInfoCustom.awardsTime!=null">
+				AND awards_time = #{rewardsInfoCustom.awardsTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="rewardsInfoCustom.awardsTimeNe!=null">
+				AND awards_time != #{rewardsInfoCustom.awardsTimeNe,jdbcType=TIMESTAMP}
+			</if>
+			<if test="rewardsInfoCustom.awardsTimeLike!=null">
+				AND awards_time LIKE CONCAT('%', #{rewardsInfoCustom.awardsTimeLike,jdbcType=TIMESTAMP} ,'%') 
+			</if>
+			<if test="rewardsInfoCustom.awardsTimeOr!=null">
+				OR awards_time = #{rewardsInfoCustom.awardsTimeOr,jdbcType=TIMESTAMP}
+			</if>
+			<if test="rewardsInfoCustom.awardsTimeNeOr!=null">
+				OR awards_time != #{rewardsInfoCustom.awardsTimeNeOr,jdbcType=TIMESTAMP}
+			</if>
+			<if test="rewardsInfoCustom.awardsTimeLikeOr!=null">
+				OR awards_time LIKE CONCAT('%', #{rewardsInfoCustom.awardsTimeLikeOr,jdbcType=TIMESTAMP} ,'%') 
+			</if>
+			<if test="rewardsInfoCustom.description!=null">
+				AND description = #{rewardsInfoCustom.description,jdbcType=VARCHAR}
+			</if>
+			<if test="rewardsInfoCustom.descriptionNe!=null">
+				AND description != #{rewardsInfoCustom.descriptionNe,jdbcType=VARCHAR}
+			</if>
+			<if test="rewardsInfoCustom.descriptionLike!=null">
+				AND description LIKE CONCAT('%', #{rewardsInfoCustom.descriptionLike,jdbcType=VARCHAR} ,'%') 
+			</if>
+			<if test="rewardsInfoCustom.descriptionOr!=null">
+				OR description = #{rewardsInfoCustom.descriptionOr,jdbcType=VARCHAR}
+			</if>
+			<if test="rewardsInfoCustom.descriptionNeOr!=null">
+				OR description != #{rewardsInfoCustom.descriptionNeOr,jdbcType=VARCHAR}
+			</if>
+			<if test="rewardsInfoCustom.descriptionLikeOr!=null">
+				OR description LIKE CONCAT('%', #{rewardsInfoCustom.descriptionLikeOr,jdbcType=VARCHAR} ,'%') 
+			</if>
+		</if>
+	</sql>
+	<sql id="limit">
+		<if test="page != null">
+			<if test="page.start != null and page.count != null">
+				limit #{page.start,jdbcType=INTEGER},#{page.count,jdbcType=INTEGER}
+			</if>
+		</if>
+	</sql>
+	<sql id="sortDesc">
+		<if test="awardsIdDesc == true||userIdDesc == true||awardsVipnumberDesc == true||awardsNormalnumberDesc == true||awardsTimeDesc == true||descriptionDesc == true">
+			ORDER BY
+			<trim suffix="DESC" suffixOverrides=",">
+				<if test="awardsIdDesc == true">
+					awards_id,
+				</if>
+				<if test="userIdDesc == true">
+					user_id,
+				</if>
+				<if test="awardsVipnumberDesc == true">
+					awards_vipnumber,
+				</if>
+				<if test="awardsNormalnumberDesc == true">
+					awards_normalnumber,
+				</if>
+				<if test="awardsTimeDesc == true">
+					awards_time,
+				</if>
+				<if test="descriptionDesc == true">
+					description,
+				</if>
+			</trim>
+		</if>
+	</sql>
+	<!-- 插入记录为空跳过，并且返回插入数据的主键 -->
+	<insert id="insertSelectiveReturnPrimaryId" parameterType="jlj.po.RewardsInfo" >
+		<!-- 
+		将插入数据的主键返回，返回到rewards_info对象中
+		SELECT LAST_INSERT_ID()：得到刚insert进去记录的主键值，只适用与自增主键
+		keyProperty：将查询到主键值设置到parameterType指定的对象的哪个属性
+		order：SELECT LAST_INSERT_ID()执行顺序，相对于insert语句来说它的执行顺序
+		resultType：指定SELECT LAST_INSERT_ID()的结果类型
+		 -->
+		<selectKey keyProperty="awardsId" order="AFTER" resultType="java.lang.Integer">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into rewards_info
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="awardsId != null" >
+				awards_id,
+	      	</if>
+			<if test="userId != null" >
+				user_id,
+	      	</if>
+			<if test="awardsVipnumber != null" >
+				awards_vipnumber,
+	      	</if>
+			<if test="awardsNormalnumber != null" >
+				awards_normalnumber,
+	      	</if>
+			<if test="awardsTime != null" >
+				awards_time,
+	      	</if>
+			<if test="description != null" >
+				description,
+	      	</if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="awardsId != null" >
+				#{awardsId,jdbcType=INTEGER},
+	      	</if>
+			<if test="userId != null" >
+				#{userId,jdbcType=INTEGER},
+	      	</if>
+			<if test="awardsVipnumber != null" >
+				#{awardsVipnumber,jdbcType=INTEGER},
+	      	</if>
+			<if test="awardsNormalnumber != null" >
+				#{awardsNormalnumber,jdbcType=INTEGER},
+	      	</if>
+			<if test="awardsTime != null" >
+				#{awardsTime,jdbcType=TIMESTAMP},
+	      	</if>
+			<if test="description != null" >
+				#{description,jdbcType=VARCHAR},
+	      	</if>
+	    </trim>
+		<!-- 
+		使用mysql的uuid（）生成主键
+		执行过程：
+		首先通过uuid()得到主键，将主键设置到user对象的id属性中
+		其次在insert执行时，从user对象中取出id属性值
+		 -->
+		<!--
+		insert into rewards_info
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="awardsId != null" >
+				awards_id,
+	      	</if>
+			<if test="userId != null" >
+				user_id,
+	      	</if>
+			<if test="awardsVipnumber != null" >
+				awards_vipnumber,
+	      	</if>
+			<if test="awardsNormalnumber != null" >
+				awards_normalnumber,
+	      	</if>
+			<if test="awardsTime != null" >
+				awards_time,
+	      	</if>
+			<if test="description != null" >
+				description,
+	      	</if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="awardsId != null" >
+				#{awardsId,jdbcType=INTEGER},
+	      	</if>
+			<if test="userId != null" >
+				#{userId,jdbcType=INTEGER},
+	      	</if>
+			<if test="awardsVipnumber != null" >
+				#{awardsVipnumber,jdbcType=INTEGER},
+	      	</if>
+			<if test="awardsNormalnumber != null" >
+				#{awardsNormalnumber,jdbcType=INTEGER},
+	      	</if>
+			<if test="awardsTime != null" >
+				#{awardsTime,jdbcType=TIMESTAMP},
+	      	</if>
+			<if test="description != null" >
+				#{description,jdbcType=VARCHAR},
+	      	</if>
+	    </trim>
+		-->
+	</insert>
+	
+	
+	<!-- 根据条件查询记录 -->
+	<select id="select" parameterType="jlj.po.vo.RewardsInfoQueryVo" resultMap="BaseResultMap">
+		select * from rewards_info
+		<where>
+			<include refid="Field_Where"/>
+		</where>
+		<include refid="sortDesc"/>
+		<include refid="limit"/>
+	</select>
+	
+	<!-- 根据条件查询第一条记录 -->
+	<select id="selectOne" parameterType="jlj.po.vo.RewardsInfoQueryVo" resultMap="BaseResultMap">
+		select * from rewards_info
+		<where>
+			<include refid="Field_Where"/>
+		</where>
+		<include refid="sortDesc"/>
+		limit 0,1
+	</select>
+	
+	<!-- 根据条件查询记录条数 -->
+	<select id="selectCount" parameterType="jlj.po.vo.RewardsInfoQueryVo" resultType="java.lang.Integer">
+		select count(*) from rewards_info
+		<where>
+			<include refid="Field_Where"/>
+		</where>
+	</select>
+	
+	<!-- 根据外键userId查询记录 -->
+	<select id="selectByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		select * from rewards_info
+		where user_id = #{value,jdbcType=INTEGER}
+	</select>
+	
+	<!-- 根据外键userId查询记录条数 -->
+	<select id="selectCountByUserId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		select count(*) from rewards_info
+		where user_id = #{value,jdbcType=INTEGER}
+	</select>
+	
+	<!-- 根据外键userId查询记录 -->
+	<update id="updateByUserIdSelective" parameterType="jlj.po.RewardsInfo" >
+	    update rewards_info
+	    <set>
+				<if test="awardsId != null" >
+					awards_id = #{awardsId,jdbcType=INTEGER},
+		      	</if>
+				<if test="userId != null" >
+					user_id = #{userId,jdbcType=INTEGER},
+		      	</if>
+				<if test="awardsVipnumber != null" >
+					awards_vipnumber = #{awardsVipnumber,jdbcType=INTEGER},
+		      	</if>
+				<if test="awardsNormalnumber != null" >
+					awards_normalnumber = #{awardsNormalnumber,jdbcType=INTEGER},
+		      	</if>
+				<if test="awardsTime != null" >
+					awards_time = #{awardsTime,jdbcType=TIMESTAMP},
+		      	</if>
+				<if test="description != null" >
+					description = #{description,jdbcType=VARCHAR},
+		      	</if>
+	    </set>
+    	where user_id = 
+				#{userId,jdbcType=INTEGER}
+	</update>
+	
+	<!-- 根据外键userId删除记录 -->
+	<delete id="deleteByUserId" parameterType="java.lang.Integer">
+		delete from rewards_info
+		where user_id = #{value,jdbcType=INTEGER}
+	</delete>
+	
+	<!-- 根据条件删除记录 -->
+	<delete id="delete" parameterType="jlj.po.vo.RewardsInfoQueryVo">
+		delete from rewards_info
+		<where>
+			<include refid="Field_Where"/>
+		</where>
+	</delete>
+	
+</mapper>

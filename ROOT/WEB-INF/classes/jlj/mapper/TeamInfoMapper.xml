@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="jlj.mapper.TeamInfoMapper" >
+  <resultMap id="BaseResultMap" type="jlj.po.TeamInfo" >
+    <id column="team_id" property="teamId" jdbcType="INTEGER" />
+    <result column="administrator_id" property="administratorId" jdbcType="INTEGER" />
+    <result column="team_name" property="teamName" jdbcType="VARCHAR" />
+    <result column="team_createtime" property="teamCreatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    team_id, administrator_id, team_name, team_createtime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from team_info
+    where team_id = #{teamId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from team_info
+    where team_id = #{teamId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="jlj.po.TeamInfo" >
+    insert into team_info (team_id, administrator_id, team_name, 
+      team_createtime)
+    values (#{teamId,jdbcType=INTEGER}, #{administratorId,jdbcType=INTEGER}, #{teamName,jdbcType=VARCHAR}, 
+      #{teamCreatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="jlj.po.TeamInfo" >
+    insert into team_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="teamId != null" >
+        team_id,
+      </if>
+      <if test="administratorId != null" >
+        administrator_id,
+      </if>
+      <if test="teamName != null" >
+        team_name,
+      </if>
+      <if test="teamCreatetime != null" >
+        team_createtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="teamId != null" >
+        #{teamId,jdbcType=INTEGER},
+      </if>
+      <if test="administratorId != null" >
+        #{administratorId,jdbcType=INTEGER},
+      </if>
+      <if test="teamName != null" >
+        #{teamName,jdbcType=VARCHAR},
+      </if>
+      <if test="teamCreatetime != null" >
+        #{teamCreatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="jlj.po.TeamInfo" >
+    update team_info
+    <set >
+      <if test="administratorId != null" >
+        administrator_id = #{administratorId,jdbcType=INTEGER},
+      </if>
+      <if test="teamName != null" >
+        team_name = #{teamName,jdbcType=VARCHAR},
+      </if>
+      <if test="teamCreatetime != null" >
+        team_createtime = #{teamCreatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where team_id = #{teamId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="jlj.po.TeamInfo" >
+    update team_info
+    set administrator_id = #{administratorId,jdbcType=INTEGER},
+      team_name = #{teamName,jdbcType=VARCHAR},
+      team_createtime = #{teamCreatetime,jdbcType=TIMESTAMP}
+    where team_id = #{teamId,jdbcType=INTEGER}
+  </update>
+</mapper>

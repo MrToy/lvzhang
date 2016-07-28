@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 查询user_info表的mapper配置 -->
+<mapper namespace="jlj.mapper.custom.UserInfoCustomMapper">
+	<!-- 返回结果集重新定义，遇到字段有下划线的需要转换 -->
+	<resultMap id="BaseResultMap" type="jlj.po.custom.UserInfoCustom" >
+		<!-- 主键列 -->
+	    <id column="user_id" property="userId" jdbcType="INTEGER" />
+	    <result column="team_id" property="teamId" jdbcType="INTEGER" />
+	    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+	    <result column="user_pwd" property="userPwd" jdbcType="VARCHAR" />
+	    <result column="user_createtime" property="userCreatetime" jdbcType="TIMESTAMP" />
+	    <result column="is_header" property="isHeader" jdbcType="BIT" />
+	    <result column="user_type" property="userType" jdbcType="INTEGER" />
+	</resultMap>
+	<!-- 查询列表需要用到的动态sql -->
+	<sql id="Field_Where">
+		<if test="userInfoCustom!=null">
+			<!-- 这里要注意，where值需要加引号，因为类未知；但是对于主键为int型好像会影响mysql性能，
+				但是如果不加引号对字符串类型的输入数据就会报错
+			 -->
+			<if test="userInfoCustom.userId!=null">
+				AND user_id = #{userInfoCustom.userId,jdbcType=INTEGER}
+			</if>
+			<if test="userInfoCustom.userIdNe!=null">
+				AND user_id != #{userInfoCustom.userIdNe,jdbcType=INTEGER}
+			</if>
+			<if test="userInfoCustom.userIdLike!=null">
+				AND user_id LIKE CONCAT('%', #{userInfoCustom.userIdLike,jdbcType=INTEGER} ,'%') 
+			</if>
+			<!-- 所有有大小比较的参数都必须是整型,避免mysql字符位数不足时进行截取前几位比较 -->
+			<if test="userInfoCustom.userIdGt!=null">
+				AND user_id &gt; #{userInfoCustom.userIdGt,jdbcType=INTEGER}
+			</if>
+			<if test="userInfoCustom.userIdLt!=null">
+				AND user_id &lt; #{userInfoCustom.userIdLt,jdbcType=INTEGER}
+			</if>
+			<if test="userInfoCustom.userIdGe!=null">
+				AND user_id &gt;= #{userInfoCustom.userIdGe,jdbcType=INTEGER}
+			</if>
+			<if test="userInfoCustom.userIdLe!=null">
+				AND user_id &lt;= #{userInfoCustom.userIdLe,jdbcType=INTEGER}
+			</if>
+			<if test="userInfoCustom.userIdOr!=null">
+				OR user_id = #{userInfoCustom.userIdOr,jdbcType=INTEGER}
+			</if>
+			<if test="userInfoCustom.userIdNeOr!=null">
+				OR user_id != #{userInfoCustom.userIdNeOr,jdbcType=INTEGER}
+			</if>
+			<if test="userInfoCustom.userIdLikeOr!=null">
+				OR user_id LIKE CONCAT('%', #{userInfoCustom.userIdLikeOr,jdbcType=INTEGER} ,'%') 
+			</if>
+			<!-- 所有有大小比较的参数都必须是整型,避免mysql字符位数不足时进行截取前几位比较 -->
+			<if test="userInfoCustom.userIdGtOr!=null">
+				OR user_id &gt; #{userInfoCustom.userIdGtOr,jdbcType=INTEGER}
+			</if>
+			<if test="userInfoCustom.userIdLtOr!=null">
+				OR user_id &lt; #{userInfoCustom.userIdLtOr,jdbcType=INTEGER}
+			</if>
+			<if test="userInfoCustom.userIdGeOr!=null">
+				OR user_id &gt;= #{userInfoCustom.userIdGeOr,jdbcType=INTEGER}
+			</if>
+			<if test="userInfoCustom.userIdLeOr!=null">
+				OR user_id &lt;= #{userInfoCustom.userIdLeOr,jdbcType=INTEGER}
+			</if>
+			<if test="userInfoCustom.teamId!=null">
+				AND team_id = #{userInfoCustom.teamId,jdbcType=INTEGER}
+			</if>
+			<if test="userInfoCustom.teamIdNe!=null">
+				AND team_id != #{userInfoCustom.teamIdNe,jdbcType=INTEGER}
+			</if>
+			<if test="userInfoCustom.teamIdLike!=null">
+				AND team_id LIKE CONCAT('%', #{userInfoCustom.teamIdLike,jdbcType=INTEGER} ,'%') 
+			</if>
+			<!-- 所有有大小比较的参数都必须是整型,避免mysql字符位数不足时进行截取前几位比较 -->
+			<if test="userInfoCustom.teamIdGt!=null">
+				AND team_id &gt; #{userInfoCustom.teamIdGt,jdbcType=INTEGER}
+			</if>
+			<if test="userInfoCustom.teamIdLt!=null">
+				AND team_id &lt; #{userInfoCustom.teamIdLt,jdbcType=INTEGER}
+			</if>
+			<if test="userInfoCustom.teamIdGe!=null">
+				AND team_id &gt;= #{userInfoCustom.teamIdGe,jdbcType=INTEGER}
+			</if>
+			<if test="userInfoCustom.teamIdLe!=null">
+				AND team_id &lt;= #{userInfoCustom.teamIdLe,jdbcType=INTEGER}
+			</if>
+			<if test="userInfoCustom.teamIdOr!=null">
+				OR team_id = #{userInfoCustom.teamIdOr,jdbcType=INTEGER}
+			</if>
+			<if test="userInfoCustom.teamIdNeOr!=null">
+				OR team_id != #{userInfoCustom.teamIdNeOr,jdbcType=INTEGER}
+			</if>
+			<if test="userInfoCustom.teamIdLikeOr!=null">
+				OR team_id LIKE CONCAT('%', #{userInfoCustom.teamIdLikeOr,jdbcType=INTEGER} ,'%') 
+			</if>
+			<!-- 所有有大小比较的参数都必须是整型,避免mysql字符位数不足时进行截取前几位比较 -->
+			<if test="userInfoCustom.teamIdGtOr!=null">
+				OR team_id &gt; #{userInfoCustom.teamIdGtOr,jdbcType=INTEGER}
+			</if>
+			<if test="userInfoCustom.teamIdLtOr!=null">
+				OR team_id &lt; #{userInfoCustom.teamIdLtOr,jdbcType=INTEGER}
+			</if>
+			<if test="userInfoCustom.teamIdGeOr!=null">
+				OR team_id &gt;= #{userInfoCustom.teamIdGeOr,jdbcType=INTEGER}
+			</if>
+			<if test="userInfoCustom.teamIdLeOr!=null">
+				OR team_id &lt;= #{userInfoCustom.teamIdLeOr,jdbcType=INTEGER}
+			</if>
+			<if test="userInfoCustom.userName!=null">
+				AND user_name = #{userInfoCustom.userName,jdbcType=VARCHAR}
+			</if>
+			<if test="userInfoCustom.userNameNe!=null">
+				AND user_name != #{userInfoCustom.userNameNe,jdbcType=VARCHAR}
+			</if>
+			<if test="userInfoCustom.userNameLike!=null">
+				AND user_name LIKE CONCAT('%', #{userInfoCustom.userNameLike,jdbcType=VARCHAR} ,'%') 
+			</if>
+			<if test="userInfoCustom.userNameOr!=null">
+				OR user_name = #{userInfoCustom.userNameOr,jdbcType=VARCHAR}
+			</if>
+			<if test="userInfoCustom.userNameNeOr!=null">
+				OR user_name != #{userInfoCustom.userNameNeOr,jdbcType=VARCHAR}
+			</if>
+			<if test="userInfoCustom.userNameLikeOr!=null">
+				OR user_name LIKE CONCAT('%', #{userInfoCustom.userNameLikeOr,jdbcType=VARCHAR} ,'%') 
+			</if>
+			<if test="userInfoCustom.userPwd!=null">
+				AND user_pwd = #{userInfoCustom.userPwd,jdbcType=VARCHAR}
+			</if>
+			<if test="userInfoCustom.userPwdNe!=null">
+				AND user_pwd != #{userInfoCustom.userPwdNe,jdbcType=VARCHAR}
+			</if>
+			<if test="userInfoCustom.userPwdLike!=null">
+				AND user_pwd LIKE CONCAT('%', #{userInfoCustom.userPwdLike,jdbcType=VARCHAR} ,'%') 
+			</if>
+			<if test="userInfoCustom.userPwdOr!=null">
+				OR user_pwd = #{userInfoCustom.userPwdOr,jdbcType=VARCHAR}
+			</if>
+			<if test="userInfoCustom.userPwdNeOr!=null">
+				OR user_pwd != #{userInfoCustom.userPwdNeOr,jdbcType=VARCHAR}
+			</if>
+			<if test="userInfoCustom.userPwdLikeOr!=null">
+				OR user_pwd LIKE CONCAT('%', #{userInfoCustom.userPwdLikeOr,jdbcType=VARCHAR} ,'%') 
+			</if>
+			<if test="userInfoCustom.userCreatetime!=null">
+				AND user_createtime = #{userInfoCustom.userCreatetime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="userInfoCustom.userCreatetimeNe!=null">
+				AND user_createtime != #{userInfoCustom.userCreatetimeNe,jdbcType=TIMESTAMP}
+			</if>
+			<if test="userInfoCustom.userCreatetimeLike!=null">
+				AND user_createtime LIKE CONCAT('%', #{userInfoCustom.userCreatetimeLike,jdbcType=TIMESTAMP} ,'%') 
+			</if>
+			<if test="userInfoCustom.userCreatetimeOr!=null">
+				OR user_createtime = #{userInfoCustom.userCreatetimeOr,jdbcType=TIMESTAMP}
+			</if>
+			<if test="userInfoCustom.userCreatetimeNeOr!=null">
+				OR user_createtime != #{userInfoCustom.userCreatetimeNeOr,jdbcType=TIMESTAMP}
+			</if>
+			<if test="userInfoCustom.userCreatetimeLikeOr!=null">
+				OR user_createtime LIKE CONCAT('%', #{userInfoCustom.userCreatetimeLikeOr,jdbcType=TIMESTAMP} ,'%') 
+			</if>
+			<if test="userInfoCustom.isHeader!=null">
+				AND is_header = #{userInfoCustom.isHeader,jdbcType=BIT}
+			</if>
+			<if test="userInfoCustom.isHeaderNe!=null">
+				AND is_header != #{userInfoCustom.isHeaderNe,jdbcType=BIT}
+			</if>
+			<if test="userInfoCustom.isHeaderLike!=null">
+				AND is_header LIKE CONCAT('%', #{userInfoCustom.isHeaderLike,jdbcType=BIT} ,'%') 
+			</if>
+			<if test="userInfoCustom.isHeaderOr!=null">
+				OR is_header = #{userInfoCustom.isHeaderOr,jdbcType=BIT}
+			</if>
+			<if test="userInfoCustom.isHeaderNeOr!=null">
+				OR is_header != #{userInfoCustom.isHeaderNeOr,jdbcType=BIT}
+			</if>
+			<if test="userInfoCustom.isHeaderLikeOr!=null">
+				OR is_header LIKE CONCAT('%', #{userInfoCustom.isHeaderLikeOr,jdbcType=BIT} ,'%') 
+			</if>
+			<if test="userInfoCustom.userType!=null">
+				AND user_type = #{userInfoCustom.userType,jdbcType=INTEGER}
+			</if>
+			<if test="userInfoCustom.userTypeNe!=null">
+				AND user_type != #{userInfoCustom.userTypeNe,jdbcType=INTEGER}
+			</if>
+			<if test="userInfoCustom.userTypeLike!=null">
+				AND user_type LIKE CONCAT('%', #{userInfoCustom.userTypeLike,jdbcType=INTEGER} ,'%') 
+			</if>
+			<!-- 所有有大小比较的参数都必须是整型,避免mysql字符位数不足时进行截取前几位比较 -->
+			<if test="userInfoCustom.userTypeGt!=null">
+				AND user_type &gt; #{userInfoCustom.userTypeGt,jdbcType=INTEGER}
+			</if>
+			<if test="userInfoCustom.userTypeLt!=null">
+				AND user_type &lt; #{userInfoCustom.userTypeLt,jdbcType=INTEGER}
+			</if>
+			<if test="userInfoCustom.userTypeGe!=null">
+				AND user_type &gt;= #{userInfoCustom.userTypeGe,jdbcType=INTEGER}
+			</if>
+			<if test="userInfoCustom.userTypeLe!=null">
+				AND user_type &lt;= #{userInfoCustom.userTypeLe,jdbcType=INTEGER}
+			</if>
+			<if test="userInfoCustom.userTypeOr!=null">
+				OR user_type = #{userInfoCustom.userTypeOr,jdbcType=INTEGER}
+			</if>
+			<if test="userInfoCustom.userTypeNeOr!=null">
+				OR user_type != #{userInfoCustom.userTypeNeOr,jdbcType=INTEGER}
+			</if>
+			<if test="userInfoCustom.userTypeLikeOr!=null">
+				OR user_type LIKE CONCAT('%', #{userInfoCustom.userTypeLikeOr,jdbcType=INTEGER} ,'%') 
+			</if>
+			<!-- 所有有大小比较的参数都必须是整型,避免mysql字符位数不足时进行截取前几位比较 -->
+			<if test="userInfoCustom.userTypeGtOr!=null">
+				OR user_type &gt; #{userInfoCustom.userTypeGtOr,jdbcType=INTEGER}
+			</if>
+			<if test="userInfoCustom.userTypeLtOr!=null">
+				OR user_type &lt; #{userInfoCustom.userTypeLtOr,jdbcType=INTEGER}
+			</if>
+			<if test="userInfoCustom.userTypeGeOr!=null">
+				OR user_type &gt;= #{userInfoCustom.userTypeGeOr,jdbcType=INTEGER}
+			</if>
+			<if test="userInfoCustom.userTypeLeOr!=null">
+				OR user_type &lt;= #{userInfoCustom.userTypeLeOr,jdbcType=INTEGER}
+			</if>
+		</if>
+	</sql>
+	<sql id="limit">
+		<if test="page != null">
+			<if test="page.start != null and page.count != null">
+				limit #{page.start,jdbcType=INTEGER},#{page.count,jdbcType=INTEGER}
+			</if>
+		</if>
+	</sql>
+	<sql id="sortDesc">
+		<if test="userIdDesc == true||teamIdDesc == true||userNameDesc == true||userPwdDesc == true||userCreatetimeDesc == true||isHeaderDesc == true||userTypeDesc == true">
+			ORDER BY
+			<trim suffix="DESC" suffixOverrides=",">
+				<if test="userIdDesc == true">
+					user_id,
+				</if>
+				<if test="teamIdDesc == true">
+					team_id,
+				</if>
+				<if test="userNameDesc == true">
+					user_name,
+				</if>
+				<if test="userPwdDesc == true">
+					user_pwd,
+				</if>
+				<if test="userCreatetimeDesc == true">
+					user_createtime,
+				</if>
+				<if test="isHeaderDesc == true">
+					is_header,
+				</if>
+				<if test="userTypeDesc == true">
+					user_type,
+				</if>
+			</trim>
+		</if>
+	</sql>
+	<!-- 插入记录为空跳过，并且返回插入数据的主键 -->
+	<insert id="insertSelectiveReturnPrimaryId" parameterType="jlj.po.UserInfo" >
+		<!-- 
+		将插入数据的主键返回，返回到user_info对象中
+		SELECT LAST_INSERT_ID()：得到刚insert进去记录的主键值，只适用与自增主键
+		keyProperty：将查询到主键值设置到parameterType指定的对象的哪个属性
+		order：SELECT LAST_INSERT_ID()执行顺序，相对于insert语句来说它的执行顺序
+		resultType：指定SELECT LAST_INSERT_ID()的结果类型
+		 -->
+		<selectKey keyProperty="userId" order="AFTER" resultType="java.lang.Integer">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into user_info
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="userId != null" >
+				user_id,
+	      	</if>
+			<if test="teamId != null" >
+				team_id,
+	      	</if>
+			<if test="userName != null" >
+				user_name,
+	      	</if>
+			<if test="userPwd != null" >
+				user_pwd,
+	      	</if>
+			<if test="userCreatetime != null" >
+				user_createtime,
+	      	</if>
+			<if test="isHeader != null" >
+				is_header,
+	      	</if>
+			<if test="userType != null" >
+				user_type,
+	      	</if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="userId != null" >
+				#{userId,jdbcType=INTEGER},
+	      	</if>
+			<if test="teamId != null" >
+				#{teamId,jdbcType=INTEGER},
+	      	</if>
+			<if test="userName != null" >
+				#{userName,jdbcType=VARCHAR},
+	      	</if>
+			<if test="userPwd != null" >
+				#{userPwd,jdbcType=VARCHAR},
+	      	</if>
+			<if test="userCreatetime != null" >
+				#{userCreatetime,jdbcType=TIMESTAMP},
+	      	</if>
+			<if test="isHeader != null" >
+				#{isHeader,jdbcType=BIT},
+	      	</if>
+			<if test="userType != null" >
+				#{userType,jdbcType=INTEGER},
+	      	</if>
+	    </trim>
+		<!-- 
+		使用mysql的uuid（）生成主键
+		执行过程：
+		首先通过uuid()得到主键，将主键设置到user对象的id属性中
+		其次在insert执行时，从user对象中取出id属性值
+		 -->
+		<!--
+		insert into user_info
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="userId != null" >
+				user_id,
+	      	</if>
+			<if test="teamId != null" >
+				team_id,
+	      	</if>
+			<if test="userName != null" >
+				user_name,
+	      	</if>
+			<if test="userPwd != null" >
+				user_pwd,
+	      	</if>
+			<if test="userCreatetime != null" >
+				user_createtime,
+	      	</if>
+			<if test="isHeader != null" >
+				is_header,
+	      	</if>
+			<if test="userType != null" >
+				user_type,
+	      	</if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="userId != null" >
+				#{userId,jdbcType=INTEGER},
+	      	</if>
+			<if test="teamId != null" >
+				#{teamId,jdbcType=INTEGER},
+	      	</if>
+			<if test="userName != null" >
+				#{userName,jdbcType=VARCHAR},
+	      	</if>
+			<if test="userPwd != null" >
+				#{userPwd,jdbcType=VARCHAR},
+	      	</if>
+			<if test="userCreatetime != null" >
+				#{userCreatetime,jdbcType=TIMESTAMP},
+	      	</if>
+			<if test="isHeader != null" >
+				#{isHeader,jdbcType=BIT},
+	      	</if>
+			<if test="userType != null" >
+				#{userType,jdbcType=INTEGER},
+	      	</if>
+	    </trim>
+		-->
+	</insert>
+	
+	
+	<!-- 根据条件查询记录 -->
+	<select id="select" parameterType="jlj.po.vo.UserInfoQueryVo" resultMap="BaseResultMap">
+		select * from user_info
+		<where>
+			<include refid="Field_Where"/>
+		</where>
+		<include refid="sortDesc"/>
+		<include refid="limit"/>
+	</select>
+	
+	<!-- 根据条件查询第一条记录 -->
+	<select id="selectOne" parameterType="jlj.po.vo.UserInfoQueryVo" resultMap="BaseResultMap">
+		select * from user_info
+		<where>
+			<include refid="Field_Where"/>
+		</where>
+		<include refid="sortDesc"/>
+		limit 0,1
+	</select>
+	
+	<!-- 根据条件查询记录条数 -->
+	<select id="selectCount" parameterType="jlj.po.vo.UserInfoQueryVo" resultType="java.lang.Integer">
+		select count(*) from user_info
+		<where>
+			<include refid="Field_Where"/>
+		</where>
+	</select>
+	
+	<!-- 根据外键teamId查询记录 -->
+	<select id="selectByTeamId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		select * from user_info
+		where team_id = #{value,jdbcType=INTEGER}
+	</select>
+	
+	<!-- 根据外键teamId查询记录条数 -->
+	<select id="selectCountByTeamId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		select count(*) from user_info
+		where team_id = #{value,jdbcType=INTEGER}
+	</select>
+	
+	<!-- 根据外键teamId查询记录 -->
+	<update id="updateByTeamIdSelective" parameterType="jlj.po.UserInfo" >
+	    update user_info
+	    <set>
+				<if test="userId != null" >
+					user_id = #{userId,jdbcType=INTEGER},
+		      	</if>
+				<if test="teamId != null" >
+					team_id = #{teamId,jdbcType=INTEGER},
+		      	</if>
+				<if test="userName != null" >
+					user_name = #{userName,jdbcType=VARCHAR},
+		      	</if>
+				<if test="userPwd != null" >
+					user_pwd = #{userPwd,jdbcType=VARCHAR},
+		      	</if>
+				<if test="userCreatetime != null" >
+					user_createtime = #{userCreatetime,jdbcType=TIMESTAMP},
+		      	</if>
+				<if test="isHeader != null" >
+					is_header = #{isHeader,jdbcType=BIT},
+		      	</if>
+				<if test="userType != null" >
+					user_type = #{userType,jdbcType=INTEGER},
+		      	</if>
+	    </set>
+    	where team_id = 
+				#{teamId,jdbcType=INTEGER}
+	</update>
+	
+	<!-- 根据外键teamId删除记录 -->
+	<delete id="deleteByTeamId" parameterType="java.lang.Integer">
+		delete from user_info
+		where team_id = #{value,jdbcType=INTEGER}
+	</delete>
+	
+	<!-- 根据条件删除记录 -->
+	<delete id="delete" parameterType="jlj.po.vo.UserInfoQueryVo">
+		delete from user_info
+		<where>
+			<include refid="Field_Where"/>
+		</where>
+	</delete>
+	
+</mapper>

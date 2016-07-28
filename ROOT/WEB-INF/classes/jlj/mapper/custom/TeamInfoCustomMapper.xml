@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 查询team_info表的mapper配置 -->
+<mapper namespace="jlj.mapper.custom.TeamInfoCustomMapper">
+	<!-- 返回结果集重新定义，遇到字段有下划线的需要转换 -->
+	<resultMap id="BaseResultMap" type="jlj.po.custom.TeamInfoCustom" >
+		<!-- 主键列 -->
+	    <id column="team_id" property="teamId" jdbcType="INTEGER" />
+	    <result column="administrator_id" property="administratorId" jdbcType="INTEGER" />
+	    <result column="team_name" property="teamName" jdbcType="VARCHAR" />
+	    <result column="team_createtime" property="teamCreatetime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<!-- 查询列表需要用到的动态sql -->
+	<sql id="Field_Where">
+		<if test="teamInfoCustom!=null">
+			<!-- 这里要注意，where值需要加引号，因为类未知；但是对于主键为int型好像会影响mysql性能，
+				但是如果不加引号对字符串类型的输入数据就会报错
+			 -->
+			<if test="teamInfoCustom.teamId!=null">
+				AND team_id = #{teamInfoCustom.teamId,jdbcType=INTEGER}
+			</if>
+			<if test="teamInfoCustom.teamIdNe!=null">
+				AND team_id != #{teamInfoCustom.teamIdNe,jdbcType=INTEGER}
+			</if>
+			<if test="teamInfoCustom.teamIdLike!=null">
+				AND team_id LIKE CONCAT('%', #{teamInfoCustom.teamIdLike,jdbcType=INTEGER} ,'%') 
+			</if>
+			<!-- 所有有大小比较的参数都必须是整型,避免mysql字符位数不足时进行截取前几位比较 -->
+			<if test="teamInfoCustom.teamIdGt!=null">
+				AND team_id &gt; #{teamInfoCustom.teamIdGt,jdbcType=INTEGER}
+			</if>
+			<if test="teamInfoCustom.teamIdLt!=null">
+				AND team_id &lt; #{teamInfoCustom.teamIdLt,jdbcType=INTEGER}
+			</if>
+			<if test="teamInfoCustom.teamIdGe!=null">
+				AND team_id &gt;= #{teamInfoCustom.teamIdGe,jdbcType=INTEGER}
+			</if>
+			<if test="teamInfoCustom.teamIdLe!=null">
+				AND team_id &lt;= #{teamInfoCustom.teamIdLe,jdbcType=INTEGER}
+			</if>
+			<if test="teamInfoCustom.teamIdOr!=null">
+				OR team_id = #{teamInfoCustom.teamIdOr,jdbcType=INTEGER}
+			</if>
+			<if test="teamInfoCustom.teamIdNeOr!=null">
+				OR team_id != #{teamInfoCustom.teamIdNeOr,jdbcType=INTEGER}
+			</if>
+			<if test="teamInfoCustom.teamIdLikeOr!=null">
+				OR team_id LIKE CONCAT('%', #{teamInfoCustom.teamIdLikeOr,jdbcType=INTEGER} ,'%') 
+			</if>
+			<!-- 所有有大小比较的参数都必须是整型,避免mysql字符位数不足时进行截取前几位比较 -->
+			<if test="teamInfoCustom.teamIdGtOr!=null">
+				OR team_id &gt; #{teamInfoCustom.teamIdGtOr,jdbcType=INTEGER}
+			</if>
+			<if test="teamInfoCustom.teamIdLtOr!=null">
+				OR team_id &lt; #{teamInfoCustom.teamIdLtOr,jdbcType=INTEGER}
+			</if>
+			<if test="teamInfoCustom.teamIdGeOr!=null">
+				OR team_id &gt;= #{teamInfoCustom.teamIdGeOr,jdbcType=INTEGER}
+			</if>
+			<if test="teamInfoCustom.teamIdLeOr!=null">
+				OR team_id &lt;= #{teamInfoCustom.teamIdLeOr,jdbcType=INTEGER}
+			</if>
+			<if test="teamInfoCustom.administratorId!=null">
+				AND administrator_id = #{teamInfoCustom.administratorId,jdbcType=INTEGER}
+			</if>
+			<if test="teamInfoCustom.administratorIdNe!=null">
+				AND administrator_id != #{teamInfoCustom.administratorIdNe,jdbcType=INTEGER}
+			</if>
+			<if test="teamInfoCustom.administratorIdLike!=null">
+				AND administrator_id LIKE CONCAT('%', #{teamInfoCustom.administratorIdLike,jdbcType=INTEGER} ,'%') 
+			</if>
+			<!-- 所有有大小比较的参数都必须是整型,避免mysql字符位数不足时进行截取前几位比较 -->
+			<if test="teamInfoCustom.administratorIdGt!=null">
+				AND administrator_id &gt; #{teamInfoCustom.administratorIdGt,jdbcType=INTEGER}
+			</if>
+			<if test="teamInfoCustom.administratorIdLt!=null">
+				AND administrator_id &lt; #{teamInfoCustom.administratorIdLt,jdbcType=INTEGER}
+			</if>
+			<if test="teamInfoCustom.administratorIdGe!=null">
+				AND administrator_id &gt;= #{teamInfoCustom.administratorIdGe,jdbcType=INTEGER}
+			</if>
+			<if test="teamInfoCustom.administratorIdLe!=null">
+				AND administrator_id &lt;= #{teamInfoCustom.administratorIdLe,jdbcType=INTEGER}
+			</if>
+			<if test="teamInfoCustom.administratorIdOr!=null">
+				OR administrator_id = #{teamInfoCustom.administratorIdOr,jdbcType=INTEGER}
+			</if>
+			<if test="teamInfoCustom.administratorIdNeOr!=null">
+				OR administrator_id != #{teamInfoCustom.administratorIdNeOr,jdbcType=INTEGER}
+			</if>
+			<if test="teamInfoCustom.administratorIdLikeOr!=null">
+				OR administrator_id LIKE CONCAT('%', #{teamInfoCustom.administratorIdLikeOr,jdbcType=INTEGER} ,'%') 
+			</if>
+			<!-- 所有有大小比较的参数都必须是整型,避免mysql字符位数不足时进行截取前几位比较 -->
+			<if test="teamInfoCustom.administratorIdGtOr!=null">
+				OR administrator_id &gt; #{teamInfoCustom.administratorIdGtOr,jdbcType=INTEGER}
+			</if>
+			<if test="teamInfoCustom.administratorIdLtOr!=null">
+				OR administrator_id &lt; #{teamInfoCustom.administratorIdLtOr,jdbcType=INTEGER}
+			</if>
+			<if test="teamInfoCustom.administratorIdGeOr!=null">
+				OR administrator_id &gt;= #{teamInfoCustom.administratorIdGeOr,jdbcType=INTEGER}
+			</if>
+			<if test="teamInfoCustom.administratorIdLeOr!=null">
+				OR administrator_id &lt;= #{teamInfoCustom.administratorIdLeOr,jdbcType=INTEGER}
+			</if>
+			<if test="teamInfoCustom.teamName!=null">
+				AND team_name = #{teamInfoCustom.teamName,jdbcType=VARCHAR}
+			</if>
+			<if test="teamInfoCustom.teamNameNe!=null">
+				AND team_name != #{teamInfoCustom.teamNameNe,jdbcType=VARCHAR}
+			</if>
+			<if test="teamInfoCustom.teamNameLike!=null">
+				AND team_name LIKE CONCAT('%', #{teamInfoCustom.teamNameLike,jdbcType=VARCHAR} ,'%') 
+			</if>
+			<if test="teamInfoCustom.teamNameOr!=null">
+				OR team_name = #{teamInfoCustom.teamNameOr,jdbcType=VARCHAR}
+			</if>
+			<if test="teamInfoCustom.teamNameNeOr!=null">
+				OR team_name != #{teamInfoCustom.teamNameNeOr,jdbcType=VARCHAR}
+			</if>
+			<if test="teamInfoCustom.teamNameLikeOr!=null">
+				OR team_name LIKE CONCAT('%', #{teamInfoCustom.teamNameLikeOr,jdbcType=VARCHAR} ,'%') 
+			</if>
+			<if test="teamInfoCustom.teamCreatetime!=null">
+				AND team_createtime = #{teamInfoCustom.teamCreatetime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="teamInfoCustom.teamCreatetimeNe!=null">
+				AND team_createtime != #{teamInfoCustom.teamCreatetimeNe,jdbcType=TIMESTAMP}
+			</if>
+			<if test="teamInfoCustom.teamCreatetimeLike!=null">
+				AND team_createtime LIKE CONCAT('%', #{teamInfoCustom.teamCreatetimeLike,jdbcType=TIMESTAMP} ,'%') 
+			</if>
+			<if test="teamInfoCustom.teamCreatetimeOr!=null">
+				OR team_createtime = #{teamInfoCustom.teamCreatetimeOr,jdbcType=TIMESTAMP}
+			</if>
+			<if test="teamInfoCustom.teamCreatetimeNeOr!=null">
+				OR team_createtime != #{teamInfoCustom.teamCreatetimeNeOr,jdbcType=TIMESTAMP}
+			</if>
+			<if test="teamInfoCustom.teamCreatetimeLikeOr!=null">
+				OR team_createtime LIKE CONCAT('%', #{teamInfoCustom.teamCreatetimeLikeOr,jdbcType=TIMESTAMP} ,'%') 
+			</if>
+		</if>
+	</sql>
+	<sql id="limit">
+		<if test="page != null">
+			<if test="page.start != null and page.count != null">
+				limit #{page.start,jdbcType=INTEGER},#{page.count,jdbcType=INTEGER}
+			</if>
+		</if>
+	</sql>
+	<sql id="sortDesc">
+		<if test="teamIdDesc == true||administratorIdDesc == true||teamNameDesc == true||teamCreatetimeDesc == true">
+			ORDER BY
+			<trim suffix="DESC" suffixOverrides=",">
+				<if test="teamIdDesc == true">
+					team_id,
+				</if>
+				<if test="administratorIdDesc == true">
+					administrator_id,
+				</if>
+				<if test="teamNameDesc == true">
+					team_name,
+				</if>
+				<if test="teamCreatetimeDesc == true">
+					team_createtime,
+				</if>
+			</trim>
+		</if>
+	</sql>
+	<!-- 插入记录为空跳过，并且返回插入数据的主键 -->
+	<insert id="insertSelectiveReturnPrimaryId" parameterType="jlj.po.TeamInfo" >
+		<!-- 
+		将插入数据的主键返回，返回到team_info对象中
+		SELECT LAST_INSERT_ID()：得到刚insert进去记录的主键值，只适用与自增主键
+		keyProperty：将查询到主键值设置到parameterType指定的对象的哪个属性
+		order：SELECT LAST_INSERT_ID()执行顺序，相对于insert语句来说它的执行顺序
+		resultType：指定SELECT LAST_INSERT_ID()的结果类型
+		 -->
+		<selectKey keyProperty="teamId" order="AFTER" resultType="java.lang.Integer">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into team_info
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="teamId != null" >
+				team_id,
+	      	</if>
+			<if test="administratorId != null" >
+				administrator_id,
+	      	</if>
+			<if test="teamName != null" >
+				team_name,
+	      	</if>
+			<if test="teamCreatetime != null" >
+				team_createtime,
+	      	</if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="teamId != null" >
+				#{teamId,jdbcType=INTEGER},
+	      	</if>
+			<if test="administratorId != null" >
+				#{administratorId,jdbcType=INTEGER},
+	      	</if>
+			<if test="teamName != null" >
+				#{teamName,jdbcType=VARCHAR},
+	      	</if>
+			<if test="teamCreatetime != null" >
+				#{teamCreatetime,jdbcType=TIMESTAMP},
+	      	</if>
+	    </trim>
+		<!-- 
+		使用mysql的uuid（）生成主键
+		执行过程：
+		首先通过uuid()得到主键，将主键设置到user对象的id属性中
+		其次在insert执行时，从user对象中取出id属性值
+		 -->
+		<!--
+		insert into team_info
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="teamId != null" >
+				team_id,
+	      	</if>
+			<if test="administratorId != null" >
+				administrator_id,
+	      	</if>
+			<if test="teamName != null" >
+				team_name,
+	      	</if>
+			<if test="teamCreatetime != null" >
+				team_createtime,
+	      	</if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="teamId != null" >
+				#{teamId,jdbcType=INTEGER},
+	      	</if>
+			<if test="administratorId != null" >
+				#{administratorId,jdbcType=INTEGER},
+	      	</if>
+			<if test="teamName != null" >
+				#{teamName,jdbcType=VARCHAR},
+	      	</if>
+			<if test="teamCreatetime != null" >
+				#{teamCreatetime,jdbcType=TIMESTAMP},
+	      	</if>
+	    </trim>
+		-->
+	</insert>
+	
+	
+	<!-- 根据条件查询记录 -->
+	<select id="select" parameterType="jlj.po.vo.TeamInfoQueryVo" resultMap="BaseResultMap">
+		select * from team_info
+		<where>
+			<include refid="Field_Where"/>
+		</where>
+		<include refid="sortDesc"/>
+		<include refid="limit"/>
+	</select>
+	
+	<!-- 根据条件查询第一条记录 -->
+	<select id="selectOne" parameterType="jlj.po.vo.TeamInfoQueryVo" resultMap="BaseResultMap">
+		select * from team_info
+		<where>
+			<include refid="Field_Where"/>
+		</where>
+		<include refid="sortDesc"/>
+		limit 0,1
+	</select>
+	
+	<!-- 根据条件查询记录条数 -->
+	<select id="selectCount" parameterType="jlj.po.vo.TeamInfoQueryVo" resultType="java.lang.Integer">
+		select count(*) from team_info
+		<where>
+			<include refid="Field_Where"/>
+		</where>
+	</select>
+	
+	<!-- 根据外键administratorId查询记录 -->
+	<select id="selectByAdministratorId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		select * from team_info
+		where administrator_id = #{value,jdbcType=INTEGER}
+	</select>
+	
+	<!-- 根据外键administratorId查询记录条数 -->
+	<select id="selectCountByAdministratorId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		select count(*) from team_info
+		where administrator_id = #{value,jdbcType=INTEGER}
+	</select>
+	
+	<!-- 根据外键administratorId查询记录 -->
+	<update id="updateByAdministratorIdSelective" parameterType="jlj.po.TeamInfo" >
+	    update team_info
+	    <set>
+				<if test="teamId != null" >
+					team_id = #{teamId,jdbcType=INTEGER},
+		      	</if>
+				<if test="administratorId != null" >
+					administrator_id = #{administratorId,jdbcType=INTEGER},
+		      	</if>
+				<if test="teamName != null" >
+					team_name = #{teamName,jdbcType=VARCHAR},
+		      	</if>
+				<if test="teamCreatetime != null" >
+					team_createtime = #{teamCreatetime,jdbcType=TIMESTAMP},
+		      	</if>
+	    </set>
+    	where administrator_id = 
+				#{administratorId,jdbcType=INTEGER}
+	</update>
+	
+	<!-- 根据外键administratorId删除记录 -->
+	<delete id="deleteByAdministratorId" parameterType="java.lang.Integer">
+		delete from team_info
+		where administrator_id = #{value,jdbcType=INTEGER}
+	</delete>
+	
+	<!-- 根据条件删除记录 -->
+	<delete id="delete" parameterType="jlj.po.vo.TeamInfoQueryVo">
+		delete from team_info
+		<where>
+			<include refid="Field_Where"/>
+		</where>
+	</delete>
+	
+</mapper>

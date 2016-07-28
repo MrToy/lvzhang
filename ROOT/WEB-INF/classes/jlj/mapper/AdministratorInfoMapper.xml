@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="jlj.mapper.AdministratorInfoMapper" >
+  <resultMap id="BaseResultMap" type="jlj.po.AdministratorInfo" >
+    <id column="administrator_id" property="administratorId" jdbcType="INTEGER" />
+    <result column="admin_name" property="adminName" jdbcType="VARCHAR" />
+    <result column="admin_pwd" property="adminPwd" jdbcType="VARCHAR" />
+    <result column="admin_createtime" property="adminCreatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    administrator_id, admin_name, admin_pwd, admin_createtime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from administrator_info
+    where administrator_id = #{administratorId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from administrator_info
+    where administrator_id = #{administratorId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="jlj.po.AdministratorInfo" >
+    insert into administrator_info (administrator_id, admin_name, admin_pwd, 
+      admin_createtime)
+    values (#{administratorId,jdbcType=INTEGER}, #{adminName,jdbcType=VARCHAR}, #{adminPwd,jdbcType=VARCHAR}, 
+      #{adminCreatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="jlj.po.AdministratorInfo" >
+    insert into administrator_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="administratorId != null" >
+        administrator_id,
+      </if>
+      <if test="adminName != null" >
+        admin_name,
+      </if>
+      <if test="adminPwd != null" >
+        admin_pwd,
+      </if>
+      <if test="adminCreatetime != null" >
+        admin_createtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="administratorId != null" >
+        #{administratorId,jdbcType=INTEGER},
+      </if>
+      <if test="adminName != null" >
+        #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPwd != null" >
+        #{adminPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="adminCreatetime != null" >
+        #{adminCreatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="jlj.po.AdministratorInfo" >
+    update administrator_info
+    <set >
+      <if test="adminName != null" >
+        admin_name = #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPwd != null" >
+        admin_pwd = #{adminPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="adminCreatetime != null" >
+        admin_createtime = #{adminCreatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where administrator_id = #{administratorId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="jlj.po.AdministratorInfo" >
+    update administrator_info
+    set admin_name = #{adminName,jdbcType=VARCHAR},
+      admin_pwd = #{adminPwd,jdbcType=VARCHAR},
+      admin_createtime = #{adminCreatetime,jdbcType=TIMESTAMP}
+    where administrator_id = #{administratorId,jdbcType=INTEGER}
+  </update>
+</mapper>
