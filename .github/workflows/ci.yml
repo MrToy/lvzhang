@@ -12,5 +12,5 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           registry: registry.cn-qingdao.aliyuncs.com
-          repository: registry.cn-qingdao.aliyuncs.com/toy/lvzhangtest
+          repository: toy/lvzhangtest
           tags: latest
